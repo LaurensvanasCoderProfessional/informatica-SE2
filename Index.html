@@ -4,64 +4,223 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>StudySwap - Digitale schoolmarktplaats</title>
+
+  <title>StudySwap | Slimmer studeren</title>
+  <meta name="description" content="Ontdek, koop en verkoop samenvattingen en studiemateriaal bij StudySwap.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+
+  <!-- NAVIGATIE -->
   <header class="navbar">
-    <a class="logo" href="#">🎓 StudySwap</a>
+    <a class="logo" href="#">
+      <span class="logo-icon">S</span>
+      StudySwap
+    </a>
+
     <nav>
+      <a href="#">Home</a>
       <a href="#producten">Ontdekken</a>
       <a href="#verkopen">Verkopen</a>
-      <button onclick="openLogin()">Inloggen</button>
+      <button class="login-btn" onclick="openLogin()">Inloggen</button>
     </nav>
   </header>
 
+
+  <!-- HERO -->
   <section class="hero">
-    <span class="tag">DE MARKTPLAATS VOOR STUDENTEN</span>
-    <h1>Studeren wordt<br><span>een stuk slimmer.</span></h1>
-    <p>Ontdek, koop en verkoop samenvattingen, planners en studiemateriaal.</p>
-    <a class="primary-btn" href="#producten">Ontdek producten →</a>
+
+    <div class="hero-content">
+
+      <span class="tag">HET PLATFORM VOOR SLIMME LEERLINGEN</span>
+
+      <h1>
+        Haal meer uit<br>
+        <span>je studietijd.</span>
+      </h1>
+
+      <p>
+        Ontdek handige samenvattingen, deel jouw kennis
+        en verdien geld met je eigen studiemateriaal.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="#producten" class="primary-btn">
+          Ontdek producten →
+        </a>
+
+        <a href="#verkopen" class="secondary-btn">
+          Verkoop jouw samenvatting
+        </a>
+      </div>
+
+      <div class="hero-benefits">
+        <span>✓ Eenvoudig ontdekken</span>
+        <span>✓ Kennis delen</span>
+        <span>✓ Zelf geld verdienen</span>
+      </div>
+
+    </div>
+
+    <div class="hero-decoration">
+      <div class="hero-card">
+        <div class="document-icon">PDF</div>
+        <div>
+          <strong>Biologie samenvatting</strong>
+          <p>VWO · Hoofdstuk 4</p>
+        </div>
+        <span class="document-price">€3,50</span>
+      </div>
+
+      <div class="hero-card second-card">
+        <div class="document-icon purple-icon">DOC</div>
+        <div>
+          <strong>Geschiedenis H2</strong>
+          <p>HAVO · Samenvatting</p>
+        </div>
+        <span class="document-price">€2,00</span>
+      </div>
+    </div>
+
   </section>
 
-  <main>
-    <section class="categories">
-      <h2>Ontdek categorieën</h2>
-      <div class="category-list">
-        <button onclick="filterCategory('Samenvattingen')">📚 Samenvattingen</button>
-        <button onclick="filterCategory('PowerPoints')">📊 PowerPoints</button>
-        <button onclick="filterCategory('Planners')">📅 Planners</button>
-        <button onclick="filterCategory('Templates')">💻 Templates</button>
-      </div>
-    </section>
 
-    <section id="producten">
+  <main>
+
+    <!-- CATEGORIEËN -->
+    <section class="categories">
+
       <div class="section-heading">
         <div>
-          <h2>Ontdek producten</h2>
-          <p>De beste bestanden van andere leerlingen.</p>
+          <span class="section-label">ONTDEK STUDYMATERIAAL</span>
+          <h2>Waar ben je naar op zoek?</h2>
+          <p>Vind precies wat je nodig hebt om slimmer te studeren.</p>
         </div>
-        <input id="search" placeholder="Zoek producten..." oninput="renderProducts()">
       </div>
-      <div id="product-list" class="product-grid"></div>
+
+      <div class="category-list">
+
+        <button onclick="filterCategory('Samenvattingen')">
+          <span class="category-icon">📚</span>
+          <span>Samenvattingen</span>
+          <span class="category-arrow">→</span>
+        </button>
+
+        <button onclick="filterCategory('PowerPoints')">
+          <span class="category-icon">📊</span>
+          <span>PowerPoints</span>
+          <span class="category-arrow">→</span>
+        </button>
+
+        <button onclick="filterCategory('Planners')">
+          <span class="category-icon">📅</span>
+          <span>Planners</span>
+          <span class="category-arrow">→</span>
+        </button>
+
+        <button onclick="filterCategory('Templates')">
+          <span class="category-icon">💻</span>
+          <span>Templates</span>
+          <span class="category-arrow">→</span>
+        </button>
+
+      </div>
+
     </section>
 
-    <section id="verkopen" class="sell-section">
-      <h2>Verkoop jouw kennis.</h2>
-      <p>Heb jij goede samenvattingen of handige planners? Verdien er geld mee!</p>
-      <button class="primary-btn" onclick="openSell()">+ Product verkopen</button>
+
+    <!-- PRODUCTEN -->
+    <section id="producten" class="products-section">
+
+      <div class="section-heading product-heading">
+
+        <div>
+          <span class="section-label">DE COMMUNITY FAVORIETEN</span>
+          <h2>Ontdek producten</h2>
+          <p>Handig studiemateriaal, gemaakt door andere leerlingen.</p>
+        </div>
+
+        <div class="search-wrapper">
+          <span>⌕</span>
+          <input
+            id="search"
+            type="search"
+            placeholder="Zoek producten..."
+            oninput="renderProducts()"
+          >
+        </div>
+
+      </div>
+
+      <div id="product-list" class="product-grid"></div>
+
     </section>
+
+
+    <!-- VERKOPEN -->
+    <section id="verkopen" class="sell-section">
+
+      <div class="sell-content">
+
+        <span class="sell-label">JOUW KENNIS IS GELD WAARD</span>
+
+        <h2>
+          Heb jij goede samenvattingen?
+          <span>Deel ze met anderen.</span>
+        </h2>
+
+        <p>
+          Help andere leerlingen met jouw studiemateriaal
+          en verdien tegelijkertijd zelf wat bij.
+        </p>
+
+        <button class="primary-btn" onclick="openSell()">
+          + Product verkopen
+        </button>
+
+      </div>
+
+      <div class="sell-decoration">
+        <div class="sell-icon">↗</div>
+        <strong>Deel jouw kennis.</strong>
+        <p>Maak van leren iets waardevols.</p>
+      </div>
+
+    </section>
+
   </main>
 
-  <div id="sell-modal" class="modal">
-    <div class="modal-content">
-      <button class="close" onclick="closeSell()">✕</button>
-      <h2>Product verkopen</h2>
-      <form id="sell-form">
-        <label>Productnaam</label>
-        <input id="product-name" required placeholder="Bijv. Biologie samenvatting">
 
-        <label>Categorie</label>
+  <!-- VERKOOP MODAL -->
+  <div id="sell-modal" class="modal">
+
+    <div class="modal-content">
+
+      <button class="close" onclick="closeSell()">✕</button>
+
+      <span class="section-label">STUDYSWAP MARKTPLAATS</span>
+      <h2>Verkoop jouw product</h2>
+
+      <p class="modal-description">
+        Vul de gegevens in en deel jouw studiemateriaal.
+      </p>
+
+      <form id="sell-form">
+
+        <label for="product-name">Productnaam</label>
+        <input
+          id="product-name"
+          required
+          placeholder="Bijv. Biologie samenvatting"
+        >
+
+        <label for="product-category">Categorie</label>
         <select id="product-category">
           <option>Samenvattingen</option>
           <option>PowerPoints</option>
@@ -69,37 +228,103 @@
           <option>Templates</option>
         </select>
 
-        <label>Beschrijving</label>
-        <textarea id="product-description" required placeholder="Beschrijf je product..."></textarea>
+        <label for="product-description">Beschrijving</label>
+        <textarea
+          id="product-description"
+          required
+          placeholder="Beschrijf je product..."
+        ></textarea>
 
-        <label>Prijs (€)</label>
-        <input id="product-price" type="number" min="0.50" max="100" step="0.01" required>
+        <label for="product-price">Prijs (€)</label>
+        <input
+          id="product-price"
+          type="number"
+          min="0.50"
+          max="100"
+          step="0.01"
+          required
+          placeholder="Bijv. 3.50"
+        >
 
-        <label>Naam verkoper</label>
-        <input id="seller-name" required placeholder="Jouw naam">
+        <label for="seller-name">Naam verkoper</label>
+        <input
+          id="seller-name"
+          required
+          placeholder="Jouw naam"
+        >
 
-        <label>Digitaal bestand</label>
-        <input id="product-file" type="file" required accept=".pdf,.pptx,.docx,.zip">
-        <button class="primary-btn" type="submit">Product plaatsen</button>
+        <label for="product-file">Digitaal bestand</label>
+        <input
+          id="product-file"
+          type="file"
+          required
+          accept=".pdf,.pptx,.docx,.zip"
+        >
+
+        <button class="primary-btn submit-btn" type="submit">
+          Product plaatsen →
+        </button>
+
       </form>
+
     </div>
+
   </div>
 
+
+  <!-- LOGIN MODAL -->
   <div id="login-modal" class="modal">
+
     <div class="modal-content">
+
       <button class="close" onclick="closeLogin()">✕</button>
-      <h2>Welkom bij StudySwap</h2>
-      <p>Accountregistratie wordt binnenkort toegevoegd.</p>
+
+      <span class="section-label">WELKOM BIJ STUDYSWAP</span>
+
+      <h2>Goed je weer te zien!</h2>
+
+      <p>
+        Accountregistratie wordt binnenkort toegevoegd.
+      </p>
+
     </div>
+
   </div>
 
-  <footer>
-    <h3>🎓 StudySwap</h3>
-    <p>Study smarter. Share knowledge.</p>
-    <p>© 2026 StudySwap</p>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+
+    <div class="footer-top">
+
+      <div>
+        <a class="logo footer-logo" href="#">
+          <span class="logo-icon">S</span>
+          StudySwap
+        </a>
+
+        <p>
+          Study smarter. Share knowledge.
+        </p>
+      </div>
+
+      <div class="footer-links">
+        <a href="#">Home</a>
+        <a href="#producten">Ontdekken</a>
+        <a href="#verkopen">Verkopen</a>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 StudySwap. Alle rechten voorbehouden.</p>
+      <p>Gemaakt voor leerlingen, door leerlingen.</p>
+    </div>
+
   </footer>
 
+
   <script src="app.js"></script>
+
 </body>
 </html>
-
