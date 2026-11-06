@@ -1,39 +1,87 @@
 
+/* =========================================
+   STUDYSWAP - BEHEER
+   Productoverzicht en statistieken
+   ========================================= */
+
 function beheerOverzicht() {
-  const producten = JSON.parse(
-    localStorage.getItem("studyswap-products") || "[]"
-  );
+    const producten = JSON.parse(
+        localStorage.getItem("studyswap-products") || "[]"
+    );
 
-  const totaalProducten = producten.length;
+    // Controleer of de opgeslagen gegevens geldig zijn
+    if (!Array.isArray(producten)) {
+        console.error("StudySwap: Ongeldige productgegevens.");
+        return;
+    }
 
-  const totaalPrijs = producten.reduce((totaal, product) => {
-    return totaal + (Number(product.prijs) || 0);
-  }, 0);
+    // Bereken statistieken
+    const totaalProducten = producten.length;
 
-  console.log("================================");
-  console.log("       STUDYSWAP BEHEER");
-  console.log("================================");
-  console.log("Totaal aantal producten:", totaalProducten);
-  console.log(
-    "Totale waarde producten: €" + totaalPrijs.toFixed(2)
-  );
+    const totaalPrijs = producten.reduce((totaal, product) => {
+        return totaal + (Number(product.prijs) || 0);
+    }, 0);
 
-  console.log("--------------------------------");
-  console.log("OPGESLAGEN SAMENVATTINGEN");
-  console.log("--------------------------------");
+    const gemiddeldePrijs = totaalProducten > 0
+        ? totaalPrijs / totaalProducten
+        : 0;
 
-  if (producten.length === 0) {
-    console.log("Er zijn nog geen producten toegevoegd.");
-    return;
-  }
+    // Dashboard
+    console.clear();
 
-  producten.forEach((product, index) => {
-    console.log(`${index + 1}. ${product.naam || "Naam onbekend"}`);
-    console.log("Prijs:", product.prijs ?? "Niet ingesteld");
-    console.log("--------------------------------");
-  });
+    console.log(
+        "%c STUDYSWAP BEHEER",
+        "background: #7950e8; color: white; font-size: 22px; font-weight: bold; padding: 15px 25px; border-radius: 8px;"
+    );
+
+    console.log(
+        "%c PRODUCTSTATISTIEKEN",
+        "color: #7950e8; font-size: 15px; font-weight: bold;"
+    );
+
+    console.table([
+        {
+            Onderdeel: "Aantal producten",
+            Waarde: totaalProducten
+        },
+        {
+            Onderdeel: "Totale productwaarde",
+            Waarde: "€ " + totaalPrijs.toFixed(2)
+        },
+        {
+            Onderdeel: "Gemiddelde prijs",
+            Waarde: "€ " + gemiddeldePrijs.toFixed(2)
+        }
+    ]);
+
+    // Productoverzicht
+    console.log(
+        "%c OPGESLAGEN SAMENVATTINGEN",
+        "color: #7950e8; font-size: 15px; font-weight: bold;"
+    );
+
+    if (producten.length === 0) {
+        console.warn(
+            "Er zijn nog geen samenvattingen toegevoegd."
+        );
+        return;
+    }
+
+    const productOverzicht = producten.map((product, index) => ({
+        Nummer: index + 1,
+        Naam: product.naam || "Naam onbekend",
+        Prijs: "€ " + (Number(product.prijs) || 0).toFixed(2),
+        Vak: product.vak || "Niet ingesteld",
+        Opleiding: product.opleiding || "Niet ingesteld"
+    }));
+
+    console.table(productOverzicht);
+
+    console.log(
+        "%c TOTAAL: " + totaalProducten + " SAMENVATTING(EN)",
+        "background: #eee8ff; color: #6035cf; font-size: 13px; font-weight: bold; padding: 10px;"
+    );
 }
 
+// Beheer uitvoeren
 beheerOverzicht();
-
-
