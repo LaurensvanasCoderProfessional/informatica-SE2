@@ -31,53 +31,73 @@
 
 <body>
 
+
 <!-- =====================================
      NAVIGATIE
 ===================================== -->
 
 <header class="navbar">
 
-    <a href="#" class="logo">
-        <span class="logo-icon">S</span>
-        StudySwap
+    <!-- Logo -->
+    <a href="#home" class="logo" aria-label="StudySwap - Home">
+        <span class="logo-icon" aria-hidden="true">S</span>
+        <span>StudySwap</span>
     </a>
 
-    <nav>
+    <!-- Hoofdnavigatie -->
+    <nav aria-label="Hoofdnavigatie">
+
         <a href="#home">Home</a>
+
         <a href="#ontdekken">Ontdekken</a>
+
         <a href="#verkopen">Verkopen</a>
+
     </nav>
 
-    <button class="login-btn" onclick="openLoginModal()">
-        Inloggen
-    </button>
+    <!-- Gebruikersaccount -->
+    <div class="navbar-actions">
+
+        <button
+            class="login-btn"
+            type="button"
+            onclick="openLoginModal()"
+            aria-label="Inloggen op StudySwap"
+        >
+            Inloggen
+        </button>
+
+    </div>
 
 </header>
 
 
+
+
 <!-- =====================================
-     HERO
+     HERO - WELKOM BIJ STUDYSWAP
 ===================================== -->
 
-<section class="hero" id="home">
+<section class="hero" id="home" aria-labelledby="hero-title">
 
     <div class="hero-content">
 
         <span class="tag">
-            ✨ HET STUDENTENPLATFORM
+            ✨ HET PLATFORM VOOR SLIMMER STUDEREN
         </span>
 
-        <h1>
-            Slimmer studeren.
-            <span>Samen verder.</span>
+        <h1 id="hero-title">
+            Samen slimmer.
+            <span> Samen succesvoller.</span>
         </h1>
 
         <p>
-            Vind de perfecte samenvattingen voor jouw opleiding,
-            bespaar tijd en help andere studenten door jouw
-            kennis te delen.
+            Vind handige samenvattingen van andere leerlingen,
+            bespaar tijd tijdens het studeren en verdien geld
+            met jouw eigen studiemateriaal.
         </p>
 
+        <!-- Actieknoppen -->
         <div class="hero-buttons">
 
             <a href="#ontdekken" class="primary-btn">
@@ -90,22 +110,25 @@
 
         </div>
 
+        <!-- Voordelen -->
         <div class="hero-benefits">
 
             <span>✓ Eenvoudig zoeken</span>
-            <span>✓ Gemaakt door studenten</span>
-            <span>✓ Kennis delen</span>
+
+            <span>✓ Gemaakt door leerlingen</span>
+
+            <span>✓ Deel jouw kennis</span>
 
         </div>
 
     </div>
 
-
-    <div class="hero-decoration">
+    <!-- Visuele voorbeelden van samenvattingen -->
+    <div class="hero-decoration" aria-label="Voorbeelden van samenvattingen">
 
         <div class="hero-card">
 
-            <div class="document-icon">
+            <div class="document-icon" aria-hidden="true">
                 PDF
             </div>
 
@@ -118,10 +141,9 @@
 
         </div>
 
-
         <div class="hero-card second-card">
 
-            <div class="document-icon purple-icon">
+            <div class="document-icon purple-icon" aria-hidden="true">
                 PDF
             </div>
 
@@ -139,6 +161,7 @@
 </section>
 
 
+
 <!-- =====================================
      MAIN CONTENT
 ===================================== -->
@@ -146,179 +169,210 @@
 <main>
 
 
-    <!-- =====================================
-         CATEGORIEËN
-    ===================================== -->
 
-    <section class="categories">
+<!-- =====================================
+     CATEGORIEËN
+===================================== -->
+
+<section class="categories-section" id="categories">
+
+    <div class="section-heading">
+        <span class="section-tag">ONTDEK EN LEER</span>
+
+        <h2>Waar ben je naar op zoek?</h2>
+
+        <p>
+            Kies je schoolvak en ontdek handige samenvattingen
+            van andere leerlingen.
+        </p>
+    </div>
+
+    <div class="categories-grid">
+
+        <button class="category-card" type="button"
+                onclick="filterCategory('Wiskunde')">
+            <span class="category-icon">📐</span>
+            <strong>Wiskunde</strong>
+            <span>Berekeningen en formules</span>
+        </button>
+
+        <button class="category-card" type="button"
+                onclick="filterCategory('Biologie')">
+            <span class="category-icon">🧬</span>
+            <strong>Biologie</strong>
+            <span>Alles over het leven</span>
+        </button>
+
+        <button class="category-card" type="button"
+                onclick="filterCategory('Economie')">
+            <span class="category-icon">📊</span>
+            <strong>Economie</strong>
+            <span>Geld en ondernemen</span>
+        </button>
+
+        <button class="category-card" type="button"
+                onclick="filterCategory('Geschiedenis')">
+            <span class="category-icon">🏛️</span>
+            <strong>Geschiedenis</strong>
+            <span>Leer van het verleden</span>
+        </button>
+
+        <button class="category-card" type="button"
+                onclick="filterCategory('Nederlands')">
+            <span class="category-icon">📚</span>
+            <strong>Nederlands</strong>
+            <span>Taal en literatuur</span>
+        </button>
+
+        <button class="category-card" type="button"
+                onclick="filterCategory('Engels')">
+            <span class="category-icon">🌍</span>
+            <strong>Engels</strong>
+            <span>Language and literature</span>
+        </button>
+
+    </div>
+
+</section>
+
+
+
+
+
+<!-- =====================================
+     MARKTPLAATS - ONTDEK SAMENVATTINGEN
+===================================== -->
+
+<section class="products-section" id="ontdekken">
+
+    <!-- Titel en introductie -->
+    <div class="product-heading">
 
         <div class="section-heading">
 
             <span class="section-label">
-                ONTDEK JOUW STUDIEMATERIAAL
+                DE STUDYSWAP MARKTPLAATS
             </span>
 
-            <h2>Wat wil je leren?</h2>
+            <h2>Ontdek jouw volgende samenvatting 💜</h2>
 
             <p>
-                Kies een categorie en ontdek handig studiemateriaal.
+                Bekijk samenvattingen van andere leerlingen
+                en vind precies wat je nodig hebt.
             </p>
 
         </div>
 
+        <!-- Zoekfunctie -->
+        <div class="search-wrapper">
 
-        <div class="category-list">
+            <label for="searchInput" class="visually-hidden">
+                Zoek samenvattingen
+            </label>
 
-            <button type="button" onclick="filterCategory('Wiskunde')">
+            <span aria-hidden="true">⌕</span>
 
-                <span class="category-icon">📐</span>
-
-                Wiskunde
-
-                <span class="category-arrow">→</span>
-
-            </button>
-
-
-            <button type="button" onclick="filterCategory('Biologie')">
-
-                <span class="category-icon">🧬</span>
-
-                Biologie
-
-                <span class="category-arrow">→</span>
-
-            </button>
-
-
-            <button type="button" onclick="filterCategory('Economie')">
-
-                <span class="category-icon">📊</span>
-
-                Economie
-
-                <span class="category-arrow">→</span>
-
-            </button>
-
-
-            <button type="button" onclick="filterCategory('Geschiedenis')">
-
-                <span class="category-icon">📚</span>
-
-                Geschiedenis
-
-                <span class="category-arrow">→</span>
-
-            </button>
-
-        </div>
-
-    </section>
-
-
-
-    <!-- =====================================
-         PRODUCTEN
-    ===================================== -->
-
-    <section class="products-section" id="ontdekken">
-
-        <div class="product-heading">
-
-            <div class="section-heading">
-
-                <span class="section-label">
-                    POPULAIR STUDIEMATERIAAL
-                </span>
-
-                <h2>Ontdek samenvattingen</h2>
-
-                <p>
-                    Vind studiemateriaal dat bij jou past.
-                </p>
-
-            </div>
-
-
-            <div class="search-wrapper">
-
-                <span>⌕</span>
-
-                <input
-                    type="text"
-                    id="searchInput"
-                    placeholder="Zoek een samenvatting..."
-                    aria-label="Zoek samenvattingen"
-                >
-
-            </div>
-
-        </div>
-
-
-        <div class="product-grid" id="productGrid">
-
-            <!-- Producten worden door app.js geladen -->
-
-        </div>
-
-    </section>
-
-
-
-    <!-- =====================================
-         VERKOPEN
-    ===================================== -->
-
-    <section class="sell-section" id="verkopen">
-
-        <div class="sell-content">
-
-            <span class="sell-label">
-                DEEL JOUW KENNIS
-            </span>
-
-            <h2>
-                Jouw samenvatting.
-                <span>Jouw verdiensten.</span>
-            </h2>
-
-            <p>
-                Heb jij goede samenvattingen gemaakt?
-                Help andere studenten en bied jouw
-                studiemateriaal aan op StudySwap.
-            </p>
-
-            <button
-                class="primary-btn"
-                onclick="openSellModal()"
-                type="button"
+            <input
+                type="search"
+                id="searchInput"
+                placeholder="Zoek op vak of samenvatting..."
+                autocomplete="off"
             >
-                Verkoop jouw samenvatting →
-            </button>
 
         </div>
 
+    </div>
 
-        <div class="sell-decoration">
+    <!-- Productoverzicht -->
+    <div class="product-grid" id="productGrid">
 
-            <div class="sell-icon">
-                ✨
+        <!--
+            De productkaarten worden automatisch
+            gegenereerd door app.js.
+        -->
+
+    </div>
+
+</section>
+
+
+
+
+
+<!-- =====================================
+     VERKOOPSECTIE
+===================================== -->
+
+<section class="sell-section" id="verkopen">
+
+    <div class="sell-content">
+
+        <span class="section-label">
+            DEEL JOUW KENNIS
+        </span>
+
+        <h2>
+            Maak van jouw samenvattingen
+            <span>iets waardevols. 💜</span>
+        </h2>
+
+        <p>
+            Heb jij goede samenvattingen gemaakt?
+            Help andere leerlingen met studeren en verdien
+            tegelijkertijd een leuk zakcentje.
+        </p>
+
+        <div class="sell-benefits">
+
+            <div class="sell-benefit">
+                <span>📚</span>
+                <div>
+                    <strong>Deel jouw kennis</strong>
+                    <p>Help andere leerlingen met jouw werk.</p>
+                </div>
             </div>
 
-            <strong>Deel wat jij weet!</strong>
+            <div class="sell-benefit">
+                <span>💸</span>
+                <div>
+                    <strong>Verdien geld</strong>
+                    <p>Bepaal zelf de prijs van jouw samenvatting.</p>
+                </div>
+            </div>
 
-            <p>
-                Help anderen slimmer te studeren.
-            </p>
+            <div class="sell-benefit">
+                <span>🚀</span>
+                <div>
+                    <strong>Eenvoudig beginnen</strong>
+                    <p>Bied jouw samenvatting eenvoudig aan.</p>
+                </div>
+            </div>
 
         </div>
 
-    </section>
+        <button
+            type="button"
+            class="primary-btn"
+            onclick="openSellModal()"
+        >
+            Upload jouw samenvatting →
+        </button>
+
+    </div>
+
+    <div class="sell-visual" aria-hidden="true">
+
+        <div class="sell-illustration">
+            <span>📄</span>
+            <strong>Jouw samenvatting</strong>
+            <span class="sell-coin">💜 € € €</span>
+        </div>
+
+    </div>
+
+</section>
 
 
-</main>
 
 
 
@@ -326,7 +380,13 @@
      LOGIN MODAL
 ===================================== -->
 
-<div class="modal" id="loginModal">
+<div
+    class="modal"
+    id="loginModal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="loginTitle"
+>
 
     <div class="modal-content">
 
@@ -334,17 +394,18 @@
             class="close"
             onclick="closeLoginModal()"
             type="button"
-            aria-label="Sluiten"
+            aria-label="Inlogvenster sluiten"
         >
             ✕
         </button>
 
-        <span class="tag">WELKOM TERUG</span>
+        <span class="tag">WELKOM TERUG 💜</span>
 
-        <h2>Inloggen</h2>
+        <h2 id="loginTitle">Leuk dat je er weer bent!</h2>
 
         <p>
-            Log in en ontdek jouw studiemateriaal.
+            Log in op je StudySwap-account en ontdek
+            jouw favoriete samenvattingen.
         </p>
 
         <form id="loginForm">
@@ -356,7 +417,9 @@
             <input
                 type="email"
                 id="loginEmail"
+                name="email"
                 placeholder="jouw@email.nl"
+                autocomplete="email"
                 required
             >
 
@@ -367,7 +430,9 @@
             <input
                 type="password"
                 id="loginPassword"
+                name="password"
                 placeholder="Jouw wachtwoord"
+                autocomplete="current-password"
                 required
             >
 
@@ -380,187 +445,111 @@
 
         </form>
 
-    </div>
-
-</div>
-
-
-
-<!-- =====================================
-     VERKOOP MODAL
-===================================== -->
-
-<div class="modal" id="sellModal">
-
-    <div class="modal-content">
-
-        <button
-            class="close"
-            onclick="closeSellModal()"
-            type="button"
-            aria-label="Sluiten"
-        >
-            ✕
-        </button>
-
-        <span class="tag">VERKOOP JOUW KENNIS</span>
-
-        <h2>Nieuwe samenvatting</h2>
-
-        <p>
-            Vul de gegevens in en bied jouw samenvatting aan.
+        <p class="login-register">
+            Nog geen account?
+            <a href="#registreren">Maak een account aan</a>
         </p>
 
-
-        <form id="sellForm">
-
-            <label for="productName">
-                Naam samenvatting
-            </label>
-
-            <input
-                type="text"
-                id="productName"
-                placeholder="Bijv. Biologie hoofdstuk 1-5"
-                required
-            >
-
-
-            <label for="productSubject">
-                Vak
-            </label>
-
-            <select id="productSubject" required>
-
-                <option value="">
-                    Kies een vak
-                </option>
-
-                <option value="Wiskunde">Wiskunde</option>
-                <option value="Biologie">Biologie</option>
-                <option value="Economie">Economie</option>
-                <option value="Geschiedenis">Geschiedenis</option>
-                <option value="Nederlands">Nederlands</option>
-                <option value="Engels">Engels</option>
-                <option value="Scheikunde">Scheikunde</option>
-                <option value="Natuurkunde">Natuurkunde</option>
-                <option value="Overig">Overig</option>
-
-            </select>
-
-
-            <label for="productEducation">
-                Opleiding / niveau
-            </label>
-
-            <input
-                type="text"
-                id="productEducation"
-                placeholder="Bijv. VWO, HBO of WO"
-                required
-            >
-
-
-            <label for="productPrice">
-                Prijs (€)
-            </label>
-
-            <input
-                type="number"
-                id="productPrice"
-                placeholder="Bijv. 4.50"
-                min="0.01"
-                step="0.01"
-                required
-            >
-
-
-            <label for="productDescription">
-                Beschrijving
-            </label>
-
-            <textarea
-                id="productDescription"
-                placeholder="Vertel iets over jouw samenvatting..."
-                required
-            ></textarea>
-
-
-            <label for="productFile">
-                Upload jouw samenvatting
-            </label>
-
-            <input
-                type="file"
-                id="productFile"
-                accept=".pdf"
-            >
-
-
-            <button
-                type="submit"
-                class="primary-btn submit-btn"
-            >
-                Samenvatting aanbieden →
-            </button>
-
-        </form>
-
     </div>
 
 </div>
 
 
 
+
+
+<label for="productFile">
+    Upload jouw samenvatting (PDF)
+</label>
+
+<input
+    type="file"
+    id="productFile"
+    name="productFile"
+    accept=".pdf,application/pdf"
+    aria-describedby="fileHelp"
+    required
+>
+
+<small id="fileHelp">
+    Alleen PDF-bestanden. Maximaal 10 MB.
+</small>
+
+
+
+
+
 <!-- =====================================
-     FOOTER
+     FOOTER - STUDYSWAP
 ===================================== -->
 
 <footer class="footer">
 
-    <div class="footer-top">
+    <div class="footer-content">
 
-        <div>
+        <!-- Website informatie -->
+        <div class="footer-brand">
 
-            <a href="#" class="logo footer-logo">
-
-                <span class="logo-icon">
-                    S
-                </span>
-
-                StudySwap
-
+            <a href="#home" class="logo">
+                <span class="logo-icon">S</span>
+                <span>StudySwap</span>
             </a>
 
             <p>
                 Samen slimmer studeren.
-                Kennis delen begint hier.
+                Ontdek, deel en verkoop jouw
+                samenvattingen met andere leerlingen.
             </p>
 
         </div>
 
-
+        <!-- Navigatie -->
         <div class="footer-links">
 
+            <h3>Ontdek</h3>
+
             <a href="#home">Home</a>
+            <a href="#ontdekken">Marktplaats</a>
+            <a href="#categories">Categorieën</a>
 
-            <a href="#ontdekken">Ontdekken</a>
+        </div>
 
-            <a href="#verkopen">Verkopen</a>
+        <!-- Verkopen -->
+        <div class="footer-links">
+
+            <h3>Verkopen</h3>
+
+            <a href="#verkopen">Verkoop samenvattingen</a>
+
+            <a href="#verkopen">Hoe werkt het?</a>
+
+        </div>
+
+        <!-- Account -->
+        <div class="footer-links">
+
+            <h3>Mijn account</h3>
+
+            <button
+                type="button"
+                onclick="openLoginModal()"
+            >
+                Inloggen
+            </button>
 
         </div>
 
     </div>
 
-
     <div class="footer-bottom">
 
         <p>
-            © 2026 StudySwap. Alle rechten voorbehouden.
+            © <span id="currentYear"></span> StudySwap.
+            Alle rechten voorbehouden.
         </p>
 
         <p>
-            Gemaakt voor studenten, door studenten.
+            Gemaakt om samen slimmer te studeren. 💜
         </p>
 
     </div>
@@ -569,11 +558,14 @@
 
 
 
+
 <!-- =====================================
      JAVASCRIPT
 ===================================== -->
 
-<script src="app.js"></script>
-
+<script>
+    document.getElementById("currentYear").textContent =
+        new Date().getFullYear();
+</script>
 </body>
 </html>
