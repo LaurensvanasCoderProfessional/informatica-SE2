@@ -1211,3 +1211,55 @@ select:focus-visible {
     transition-duration: 0.01ms !important;
   }
 }
+/* =========================================
+   ACTIEVE VAKKEN & FILTERBALK
+========================================= */
+
+.category-card.active {
+  border-color: var(--purple);
+  background: var(--light-purple);
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-4px);
+}
+
+.filter-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 26px;
+}
+
+.filter-pill {
+  padding: 9px 16px;
+  border-radius: 999px;
+  border: 1.5px solid var(--border);
+  background: var(--white);
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+  transition: all 0.2s ease;
+}
+
+.filter-pill:hover {
+  border-color: var(--purple);
+  color: var(--purple);
+}
+
+.filter-pill.active {
+  background: var(--gradient-primary);
+  color: var(--white);
+  border-color: transparent;
+  box-shadow: 0 6px 16px rgba(121, 80, 232, 0.25);
+}
+
+.product-detail-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 16px 18px;
+}
