@@ -4,16 +4,28 @@
    ========================================= */
 
 /* =========================================
-   1. STANDAARD PRODUCTEN (Voor elk vak)
+   1. STANDAARD PRODUCTEN (Voor alle 18 vakken)
 ========================================= */
 
 const subjectIcons = {
-    Wiskunde: "📐",
-    Biologie: "🧬",
-    Economie: "📊",
-    Geschiedenis: "🏛️",
     Nederlands: "📚",
-    Engels: "🌍"
+    Engels: "🌍",
+    Duits: "🥨",
+    Frans: "🥐",
+    Spaans: "💃",
+    "Wiskunde A": "📈",
+    "Wiskunde B": "📐",
+    Natuurkunde: "⚡",
+    Scheikunde: "🧪",
+    Biologie: "🧬",
+    Informatica: "💻",
+    Economie: "📊",
+    Bedrijfseconomie: "💼",
+    Geschiedenis: "🏛️",
+    Aardrijkskunde: "🗺️",
+    Maatschappijleer: "⚖️",
+    Filosofie: "🧠",
+    "Kunst & CKV": "🎨"
 };
 
 let products = [
@@ -30,7 +42,7 @@ let products = [
     {
         id: 2,
         name: "Wiskunde B Formuleblad & Uitleg",
-        category: "Wiskunde",
+        category: "Wiskunde B",
         education: "VWO 5",
         description: "Alle belangrijke goniometrie-, differentiëren- en vergelijkingsregels overzichtelijk uitgewerkt.",
         price: 4.50,
@@ -39,6 +51,56 @@ let products = [
     },
     {
         id: 3,
+        name: "Wiskunde A Kansrekening & Statistiek",
+        category: "Wiskunde A",
+        education: "Havo 5",
+        description: "Stappenplannen voor normale verdeling, combinatoriek en grafische rekenmachine-functies.",
+        price: 3.75,
+        seller: "Mila",
+        icon: "📈"
+    },
+    {
+        id: 4,
+        name: "Natuurkunde Elektriciteit & Krachten",
+        category: "Natuurkunde",
+        education: "VWO 4",
+        description: "Heldere uitleg over schakelingen, wetten van Newton en energieomzettingen met voorbeeldsommen.",
+        price: 4.25,
+        seller: "Sem",
+        icon: "⚡"
+    },
+    {
+        id: 5,
+        name: "Scheikunde Molrekenen & Zuren-Basen",
+        category: "Scheikunde",
+        education: "Havo 5",
+        description: "Complete gids voor chemisch rekenen, pH-berekeningen, redoxreacties en koolstofchemie.",
+        price: 4.00,
+        seller: "Julia",
+        icon: "🧪"
+    },
+    {
+        id: 6,
+        name: "Informatica Python & Databases Basis",
+        category: "Informatica",
+        education: "Havo / VWO",
+        description: "Overzicht van variabelen, loops, functies, SQL-queries en HTML/CSS-structuren.",
+        price: 3.50,
+        seller: "Bram",
+        icon: "💻"
+    },
+    {
+        id: 7,
+        name: "Bedrijfseconomie Balans & Liquiditeit",
+        category: "Bedrijfseconomie",
+        education: "VWO 5",
+        description: "Uitleg over de balans, winst-en-verliesrekening, kengetallen en break-evenanalyse.",
+        price: 3.99,
+        seller: "Tess",
+        icon: "💼"
+    },
+    {
+        id: 8,
         name: "Economie Hoofdstuk 1-5",
         category: "Economie",
         education: "VWO 4",
@@ -48,7 +110,47 @@ let products = [
         icon: "📊"
     },
     {
-        id: 4,
+        id: 9,
+        name: "Duits Naamvallen & Grammatica Gids",
+        category: "Duits",
+        education: "Havo 4",
+        description: "Alle der- en ein-groepen, voorzetsels met vaste naamval en sterke werkwoorden op één blad.",
+        price: 2.99,
+        seller: "Finn",
+        icon: "🥨"
+    },
+    {
+        id: 10,
+        name: "Frans Werkwoordstijden & Signaalwoorden",
+        category: "Frans",
+        education: "VWO 4",
+        description: "Passé composé, imparfait, futur simple en de belangrijkste verbindingswoorden voor leestoetsen.",
+        price: 2.99,
+        seller: "Eva",
+        icon: "🥐"
+    },
+    {
+        id: 11,
+        name: "Spaans Onregelmatige Werkwoorden",
+        category: "Spaans",
+        education: "Havo / VWO",
+        description: "Overzicht van ser/estar, presente, indefinido en veelgebruikte zinnen voor spreekvaardigheid.",
+        price: 2.50,
+        seller: "Sara",
+        icon: "💃"
+    },
+    {
+        id: 12,
+        name: "Maatschappijleer Rechtsstaat & Politiek",
+        category: "Maatschappijleer",
+        education: "Havo 4",
+        description: "Samenvatting over de trias politica, grondrechten, politieke stromingen en de verzorgingsstaat.",
+        price: 3.25,
+        seller: "Noor",
+        icon: "⚖️"
+    },
+    {
+        id: 13,
         name: "Geschiedenis Koude Oorlog",
         category: "Geschiedenis",
         education: "Havo 5",
@@ -58,7 +160,17 @@ let products = [
         icon: "🏛️"
     },
     {
-        id: 5,
+        id: 14,
+        name: "Aardrijkskunde Aarde & Klimaat",
+        category: "Aardrijkskunde",
+        education: "VWO 4",
+        description: "Uitleg over platentektoniek, vulkanisme, luchtstromen en klimaatgebieden met schema's.",
+        price: 3.49,
+        seller: "Luuk",
+        icon: "🗺️"
+    },
+    {
+        id: 15,
         name: "Nederlands Argumentatie & Stijlfiguren",
         category: "Nederlands",
         education: "Havo / VWO",
@@ -68,7 +180,7 @@ let products = [
         icon: "📚"
     },
     {
-        id: 6,
+        id: 16,
         name: "Engels Grammar & Idiom Gids",
         category: "Engels",
         education: "VWO 5",
@@ -76,6 +188,26 @@ let products = [
         price: 2.99,
         seller: "Noah",
         icon: "🌍"
+    },
+    {
+        id: 17,
+        name: "Filosofie Ethiek & Grote Denkers",
+        category: "Filosofie",
+        education: "VWO 5",
+        description: "Kant, Aristoteles, utilitarisme en deugdenethiek helder vergeleken voor je schoolexamen.",
+        price: 3.50,
+        seller: "Anna",
+        icon: "🧠"
+    },
+    {
+        id: 18,
+        name: "Kunst & CKV Stromingen Overzicht",
+        category: "Kunst & CKV",
+        education: "Havo / VWO",
+        description: "Van Renaissance en Barok tot Modernisme en Pop-art: kenmerken en beeldaspecten op een rij.",
+        price: 2.75,
+        seller: "Liv",
+        icon: "🎨"
     }
 ];
 
@@ -414,7 +546,6 @@ function setupSellForm() {
             return;
         }
 
-        // Zet filter op Alles zodat het nieuwe product direct zichtbaar is
         selectedCategory = "Alles";
         renderProducts();
 
@@ -470,7 +601,6 @@ function setupLoginForm() {
         const email = document.getElementById("loginEmail").value.trim();
         if (!email) return;
 
-        // Haal een nette voornaam uit het e-mailadres
         const rawName = email.split("@")[0].replace(/[._-]/g, " ");
         currentUser = rawName.charAt(0).toUpperCase() + rawName.slice(1);
 
