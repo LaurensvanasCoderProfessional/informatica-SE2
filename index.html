@@ -68,17 +68,17 @@
             <div class="document-icon" aria-hidden="true">PDF</div>
             <div>
                 <strong>Biologie samenvatting</strong>
-                <p>Havo · Biologie</p>
+                <p>Havo 4 · Biologie</p>
             </div>
-            <span class="document-price">€3,99</span>
+            <span class="document-price">€ 3,99</span>
         </div>
-        <div class="hero-card second-card" onclick="filterCategory('Economie')" style="cursor: pointer;">
+        <div class="hero-card second-card" onclick="filterCategory('Wiskunde B')" style="cursor: pointer;">
             <div class="document-icon purple-icon" aria-hidden="true">PDF</div>
             <div>
-                <strong>Economie hoofdstuk 1-5</strong>
-                <p>VWO · Economie</p>
+                <strong>Wiskunde B Formuleblad</strong>
+                <p>VWO 5 · Wiskunde B</p>
             </div>
-            <span class="document-price">€3,50</span>
+            <span class="document-price">€ 4,50</span>
         </div>
     </div>
 </section>
@@ -102,44 +102,111 @@
 </section>
 
 <!-- =====================================
-     VAKKENMENU / CATEGORIEËN
+     VAKKENMENU / CATEGORIEËN (18 VAKKEN)
 ===================================== -->
 <section class="categories-section" id="categories">
     <div class="section-heading">
         <span class="section-tag">VAKKENMENU</span>
         <h2>Waar ben je naar op zoek?</h2>
-        <p>Klik op een schoolvak om direct de bijbehorende samenvattingen te openen.</p>
+        <p>Kies uit 18 schoolvakken en bekijk direct alle beschikbare samenvattingen.</p>
     </div>
     <div class="categories-grid" id="categoryGrid">
-        <button class="category-card" type="button" data-category="Wiskunde" onclick="filterCategory('Wiskunde')">
-            <span class="category-icon">📐</span>
-            <strong>Wiskunde</strong>
-            <span>Berekeningen en formules</span>
-        </button>
-        <button class="category-card" type="button" data-category="Biologie" onclick="filterCategory('Biologie')">
-            <span class="category-icon">🧬</span>
-            <strong>Biologie</strong>
-            <span>Alles over het leven</span>
-        </button>
-        <button class="category-card" type="button" data-category="Economie" onclick="filterCategory('Economie')">
-            <span class="category-icon">📊</span>
-            <strong>Economie</strong>
-            <span>Geld en ondernemen</span>
-        </button>
-        <button class="category-card" type="button" data-category="Geschiedenis" onclick="filterCategory('Geschiedenis')">
-            <span class="category-icon">🏛️</span>
-            <strong>Geschiedenis</strong>
-            <span>Leer van het verleden</span>
-        </button>
+        <!-- Talen -->
         <button class="category-card" type="button" data-category="Nederlands" onclick="filterCategory('Nederlands')">
             <span class="category-icon">📚</span>
             <strong>Nederlands</strong>
-            <span>Taal en literatuur</span>
+            <span>Taal, stijlfiguren en literatuur</span>
         </button>
         <button class="category-card" type="button" data-category="Engels" onclick="filterCategory('Engels')">
             <span class="category-icon">🌍</span>
             <strong>Engels</strong>
-            <span>Language and literature</span>
+            <span>Grammar, idiom en literatuur</span>
+        </button>
+        <button class="category-card" type="button" data-category="Duits" onclick="filterCategory('Duits')">
+            <span class="category-icon">🥨</span>
+            <strong>Duits</strong>
+            <span>Naamvallen, grammatica en woordjes</span>
+        </button>
+        <button class="category-card" type="button" data-category="Frans" onclick="filterCategory('Frans')">
+            <span class="category-icon">🥐</span>
+            <strong>Frans</strong>
+            <span>Werkwoorden, tijden en leesvaardigheid</span>
+        </button>
+        <button class="category-card" type="button" data-category="Spaans" onclick="filterCategory('Spaans')">
+            <span class="category-icon">💃</span>
+            <strong>Spaans</strong>
+            <span>Vocabulaire en werkwoordvervoegingen</span>
+        </button>
+
+        <!-- Exact & Natuur -->
+        <button class="category-card" type="button" data-category="Wiskunde A" onclick="filterCategory('Wiskunde A')">
+            <span class="category-icon">📈</span>
+            <strong>Wiskunde A</strong>
+            <span>Statistiek, kansrekening en grafieken</span>
+        </button>
+        <button class="category-card" type="button" data-category="Wiskunde B" onclick="filterCategory('Wiskunde B')">
+            <span class="category-icon">📐</span>
+            <strong>Wiskunde B</strong>
+            <span>Differentiëren, meetkunde en formules</span>
+        </button>
+        <button class="category-card" type="button" data-category="Natuurkunde" onclick="filterCategory('Natuurkunde')">
+            <span class="category-icon">⚡</span>
+            <strong>Natuurkunde</strong>
+            <span>Krachten, elektriciteit en straling</span>
+        </button>
+        <button class="category-card" type="button" data-category="Scheikunde" onclick="filterCategory('Scheikunde')">
+            <span class="category-icon">🧪</span>
+            <strong>Scheikunde</strong>
+            <span>Reactievergelijkingen, mol en zuren</span>
+        </button>
+        <button class="category-card" type="button" data-category="Biologie" onclick="filterCategory('Biologie')">
+            <span class="category-icon">🧬</span>
+            <strong>Biologie</strong>
+            <span>Cellen, DNA, ecologie en het lichaam</span>
+        </button>
+        <button class="category-card" type="button" data-category="Informatica" onclick="filterCategory('Informatica')">
+            <span class="category-icon">💻</span>
+            <strong>Informatica</strong>
+            <span>Programmeren, databases en netwerken</span>
+        </button>
+
+        <!-- Economie & Maatschappij -->
+        <button class="category-card" type="button" data-category="Economie" onclick="filterCategory('Economie')">
+            <span class="category-icon">📊</span>
+            <strong>Economie</strong>
+            <span>Marktvormen, welvaart en conjunctuur</span>
+        </button>
+        <button class="category-card" type="button" data-category="Bedrijfseconomie" onclick="filterCategory('Bedrijfseconomie')">
+            <span class="category-icon">💼</span>
+            <strong>Bedrijfseconomie</strong>
+            <span>Balans, winst-en-verlies en marketing</span>
+        </button>
+        <button class="category-card" type="button" data-category="Geschiedenis" onclick="filterCategory('Geschiedenis')">
+            <span class="category-icon">🏛️</span>
+            <strong>Geschiedenis</strong>
+            <span>Tijdvakken, oorlogen en wereldpolitiek</span>
+        </button>
+        <button class="category-card" type="button" data-category="Aardrijkskunde" onclick="filterCategory('Aardrijkskunde')">
+            <span class="category-icon">🗺️</span>
+            <strong>Aardrijkskunde</strong>
+            <span>Klimaat, platentektoniek en globalisering</span>
+        </button>
+        <button class="category-card" type="button" data-category="Maatschappijleer" onclick="filterCategory('Maatschappijleer')">
+            <span class="category-icon">⚖️</span>
+            <strong>Maatschappijleer</strong>
+            <span>Rechtsstaat, democratie en pluriformiteit</span>
+        </button>
+        <button class="category-card" type="button" data-category="Filosofie" onclick="filterCategory('Filosofie')">
+            <span class="category-icon">🧠</span>
+            <strong>Filosofie</strong>
+            <span>Ethiek, denkers en kennisleer</span>
+        </button>
+
+        <!-- Cultuur -->
+        <button class="category-card" type="button" data-category="Kunst & CKV" onclick="filterCategory('Kunst & CKV')">
+            <span class="category-icon">🎨</span>
+            <strong>Kunst &amp; CKV</strong>
+            <span>Kunstgeschiedenis, stromingen en analyse</span>
         </button>
     </div>
 </section>
@@ -164,12 +231,24 @@
     <!-- Snelle filterbalk boven de producten -->
     <div class="filter-pills" id="filterPills" role="group" aria-label="Filter op vak">
         <button type="button" class="filter-pill active" data-category="Alles" onclick="filterCategory('Alles')">Alles</button>
-        <button type="button" class="filter-pill" data-category="Wiskunde" onclick="filterCategory('Wiskunde')">📐 Wiskunde</button>
-        <button type="button" class="filter-pill" data-category="Biologie" onclick="filterCategory('Biologie')">🧬 Biologie</button>
-        <button type="button" class="filter-pill" data-category="Economie" onclick="filterCategory('Economie')">📊 Economie</button>
-        <button type="button" class="filter-pill" data-category="Geschiedenis" onclick="filterCategory('Geschiedenis')">🏛️ Geschiedenis</button>
         <button type="button" class="filter-pill" data-category="Nederlands" onclick="filterCategory('Nederlands')">📚 Nederlands</button>
         <button type="button" class="filter-pill" data-category="Engels" onclick="filterCategory('Engels')">🌍 Engels</button>
+        <button type="button" class="filter-pill" data-category="Duits" onclick="filterCategory('Duits')">🥨 Duits</button>
+        <button type="button" class="filter-pill" data-category="Frans" onclick="filterCategory('Frans')">🥐 Frans</button>
+        <button type="button" class="filter-pill" data-category="Spaans" onclick="filterCategory('Spaans')">💃 Spaans</button>
+        <button type="button" class="filter-pill" data-category="Wiskunde A" onclick="filterCategory('Wiskunde A')">📈 Wiskunde A</button>
+        <button type="button" class="filter-pill" data-category="Wiskunde B" onclick="filterCategory('Wiskunde B')">📐 Wiskunde B</button>
+        <button type="button" class="filter-pill" data-category="Natuurkunde" onclick="filterCategory('Natuurkunde')">⚡ Natuurkunde</button>
+        <button type="button" class="filter-pill" data-category="Scheikunde" onclick="filterCategory('Scheikunde')">🧪 Scheikunde</button>
+        <button type="button" class="filter-pill" data-category="Biologie" onclick="filterCategory('Biologie')">🧬 Biologie</button>
+        <button type="button" class="filter-pill" data-category="Informatica" onclick="filterCategory('Informatica')">💻 Informatica</button>
+        <button type="button" class="filter-pill" data-category="Economie" onclick="filterCategory('Economie')">📊 Economie</button>
+        <button type="button" class="filter-pill" data-category="Bedrijfseconomie" onclick="filterCategory('Bedrijfseconomie')">💼 Bedrijfseconomie</button>
+        <button type="button" class="filter-pill" data-category="Geschiedenis" onclick="filterCategory('Geschiedenis')">🏛️ Geschiedenis</button>
+        <button type="button" class="filter-pill" data-category="Aardrijkskunde" onclick="filterCategory('Aardrijkskunde')">🗺️ Aardrijkskunde</button>
+        <button type="button" class="filter-pill" data-category="Maatschappijleer" onclick="filterCategory('Maatschappijleer')">⚖️ Maatschappijleer</button>
+        <button type="button" class="filter-pill" data-category="Filosofie" onclick="filterCategory('Filosofie')">🧠 Filosofie</button>
+        <button type="button" class="filter-pill" data-category="Kunst & CKV" onclick="filterCategory('Kunst & CKV')">🎨 Kunst &amp; CKV</button>
     </div>
 
     <div class="product-grid" id="productGrid">
@@ -251,7 +330,7 @@
         </div>
 
         <button type="button" class="secondary-btn" onclick="openSell()">
-            + Samenvatting uploaden & verkopen →
+            + Samenvatting uploaden &amp; verkopen →
         </button>
     </div>
 
@@ -283,15 +362,35 @@
             <label for="productSubject">Vak</label>
             <select id="productSubject" name="productSubject" required>
                 <option value="">Kies een vak...</option>
-                <option value="Wiskunde">Wiskunde</option>
-                <option value="Biologie">Biologie</option>
-                <option value="Economie">Economie</option>
-                <option value="Geschiedenis">Geschiedenis</option>
-                <option value="Nederlands">Nederlands</option>
-                <option value="Engels">Engels</option>
+                <optgroup label="Talen">
+                    <option value="Nederlands">Nederlands</option>
+                    <option value="Engels">Engels</option>
+                    <option value="Duits">Duits</option>
+                    <option value="Frans">Frans</option>
+                    <option value="Spaans">Spaans</option>
+                </optgroup>
+                <optgroup label="Exact &amp; Natuur">
+                    <option value="Wiskunde A">Wiskunde A</option>
+                    <option value="Wiskunde B">Wiskunde B</option>
+                    <option value="Natuurkunde">Natuurkunde</option>
+                    <option value="Scheikunde">Scheikunde</option>
+                    <option value="Biologie">Biologie</option>
+                    <option value="Informatica">Informatica</option>
+                </optgroup>
+                <optgroup label="Economie &amp; Maatschappij">
+                    <option value="Economie">Economie</option>
+                    <option value="Bedrijfseconomie">Bedrijfseconomie</option>
+                    <option value="Geschiedenis">Geschiedenis</option>
+                    <option value="Aardrijkskunde">Aardrijkskunde</option>
+                    <option value="Maatschappijleer">Maatschappijleer</option>
+                    <option value="Filosofie">Filosofie</option>
+                </optgroup>
+                <optgroup label="Cultuur">
+                    <option value="Kunst & CKV">Kunst &amp; CKV</option>
+                </optgroup>
             </select>
 
-            <label for="productEducation">Opleiding & Niveau</label>
+            <label for="productEducation">Opleiding &amp; Niveau</label>
             <input type="text" id="productEducation" name="productEducation" placeholder="Bijv. Havo 4, VWO 5 of HBO" required>
 
             <label for="productDescription">Korte beschrijving</label>
@@ -324,7 +423,7 @@
                 <small style="color: var(--muted); display: block;">Totaalprijs (incl. directe PDF-download)</small>
                 <strong id="detailPrice" style="font-size: 24px; color: var(--purple-dark);">€ 0,00</strong>
             </div>
-            <button type="button" class="primary-btn" id="confirmBuyBtn">Nu kopen & downloaden →</button>
+            <button type="button" class="primary-btn" id="confirmBuyBtn">Nu kopen &amp; downloaden →</button>
         </div>
     </div>
 </div>
@@ -392,7 +491,7 @@
 </footer>
 
 <!-- =====================================
-     JAVASCRIPT (In de juiste laadvolgorde)
+     JAVASCRIPT
 ===================================== -->
 <script>
     document.getElementById("currentYear").textContent = new Date().getFullYear();
