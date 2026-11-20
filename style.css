@@ -432,7 +432,7 @@ main {
 }
 
 /* =========================================
-   CATEGORIEËN (Met veelzijdige kleuraccenten)
+   CATEGORIEËN (18 vakken met kleuraccenten)
 ========================================= */
 
 .categories-grid,
@@ -463,6 +463,13 @@ main {
   box-shadow: var(--shadow-hover);
 }
 
+.category-card.active {
+  border-color: var(--purple);
+  background: var(--light-purple);
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-4px);
+}
+
 .category-icon {
   width: 44px;
   height: 44px;
@@ -474,13 +481,12 @@ main {
   margin-bottom: 6px;
 }
 
-/* Variatie in het paarse/frisse kleurenpalet per vakkaart */
-.categories-grid .category-card:nth-child(1) .category-icon { background: var(--light-purple); }
-.categories-grid .category-card:nth-child(2) .category-icon { background: var(--soft-mint); }
-.categories-grid .category-card:nth-child(3) .category-icon { background: var(--soft-indigo); }
-.categories-grid .category-card:nth-child(4) .category-icon { background: #fef3c7; }
-.categories-grid .category-card:nth-child(5) .category-icon { background: var(--soft-pink); }
-.categories-grid .category-card:nth-child(6) .category-icon { background: var(--soft-cyan); }
+.categories-grid .category-card:nth-child(6n+1) .category-icon { background: var(--light-purple); }
+.categories-grid .category-card:nth-child(6n+2) .category-icon { background: var(--soft-mint); }
+.categories-grid .category-card:nth-child(6n+3) .category-icon { background: var(--soft-indigo); }
+.categories-grid .category-card:nth-child(6n+4) .category-icon { background: #fef3c7; }
+.categories-grid .category-card:nth-child(6n+5) .category-icon { background: var(--soft-pink); }
+.categories-grid .category-card:nth-child(6n+6) .category-icon { background: var(--soft-cyan); }
 
 .category-card strong {
   font-size: 16px;
@@ -491,6 +497,40 @@ main {
 .category-card span:last-child {
   font-size: 13px;
   color: var(--muted);
+}
+
+/* =========================================
+   FILTERBALK BOVEN MARKTPLAATS
+========================================= */
+
+.filter-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 26px;
+}
+
+.filter-pill {
+  padding: 9px 16px;
+  border-radius: 999px;
+  border: 1.5px solid var(--border);
+  background: var(--white);
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+  transition: all 0.2s ease;
+}
+
+.filter-pill:hover {
+  border-color: var(--purple);
+  color: var(--purple);
+}
+
+.filter-pill.active {
+  background: var(--gradient-primary);
+  color: var(--white);
+  border-color: transparent;
+  box-shadow: 0 6px 16px rgba(121, 80, 232, 0.25);
 }
 
 /* =========================================
@@ -575,7 +615,6 @@ main {
   margin-bottom: 15px;
 }
 
-/* Afwisselende paarse/frisse tinten op de productkaarten */
 .product-card:nth-child(4n+2) .product-icon {
   background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
 }
@@ -766,13 +805,6 @@ main {
   margin: 0;
 }
 
-.upload-box {
-  background: rgba(255, 255, 255, 0.95) !important;
-  color: var(--text);
-  border-radius: 14px !important;
-  box-shadow: 0 10px 25px rgba(25, 10, 60, 0.15);
-}
-
 .sell-visual,
 .sell-decoration {
   min-width: 240px;
@@ -953,6 +985,18 @@ main {
 
 .login-register a:hover {
   text-decoration: underline;
+}
+
+.product-detail-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 16px 18px;
 }
 
 /* =========================================
@@ -1210,56 +1254,4 @@ select:focus-visible {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-}
-/* =========================================
-   ACTIEVE VAKKEN & FILTERBALK
-========================================= */
-
-.category-card.active {
-  border-color: var(--purple);
-  background: var(--light-purple);
-  box-shadow: var(--shadow-hover);
-  transform: translateY(-4px);
-}
-
-.filter-pills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 26px;
-}
-
-.filter-pill {
-  padding: 9px 16px;
-  border-radius: 999px;
-  border: 1.5px solid var(--border);
-  background: var(--white);
-  color: var(--muted);
-  font-size: 13px;
-  font-weight: 700;
-  transition: all 0.2s ease;
-}
-
-.filter-pill:hover {
-  border-color: var(--purple);
-  color: var(--purple);
-}
-
-.filter-pill.active {
-  background: var(--gradient-primary);
-  color: var(--white);
-  border-color: transparent;
-  box-shadow: 0 6px 16px rgba(121, 80, 232, 0.25);
-}
-
-.product-detail-box {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 16px;
-  flex-wrap: wrap;
-  background: var(--bg);
-  border: 1.5px solid var(--border);
-  border-radius: 14px;
-  padding: 16px 18px;
 }
