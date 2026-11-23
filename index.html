@@ -23,6 +23,7 @@
     <nav aria-label="Hoofdnavigatie">
         <a href="#home">Home</a>
         <a href="#wat-is-het">Over ons</a>
+        <a href="#categories">Vakken</a>
         <a href="#ontdekken">Ontdekken</a>
         <a href="#verdienmodellen">Verdienmodellen</a>
         <a href="#verkopen">Verkopen</a>
@@ -106,6 +107,116 @@
 </section>
 
 <!-- =====================================
+     VAKKENMENU / CATEGORIEËN (18 VAKKEN)
+===================================== -->
+<section class="categories-section" id="categories">
+    <div class="section-heading">
+        <span class="section-tag">VAKKENMENU</span>
+        <h2>Waar ben je naar op zoek?</h2>
+        <p>Kies uit 18 schoolvakken en bekijk direct alle beschikbare samenvattingen.</p>
+    </div>
+    <div class="categories-grid" id="categoryGrid">
+        <!-- Talen -->
+        <button class="category-card" type="button" data-category="Nederlands" onclick="filterCategory('Nederlands')">
+            <span class="category-icon">📚</span>
+            <strong>Nederlands</strong>
+            <span>Taal, stijlfiguren en literatuur</span>
+        </button>
+        <button class="category-card" type="button" data-category="Engels" onclick="filterCategory('Engels')">
+            <span class="category-icon">🌍</span>
+            <strong>Engels</strong>
+            <span>Grammar, idiom en literatuur</span>
+        </button>
+        <button class="category-card" type="button" data-category="Duits" onclick="filterCategory('Duits')">
+            <span class="category-icon">🥨</span>
+            <strong>Duits</strong>
+            <span>Naamvallen, grammatica en woordjes</span>
+        </button>
+        <button class="category-card" type="button" data-category="Frans" onclick="filterCategory('Frans')">
+            <span class="category-icon">🥐</span>
+            <strong>Frans</strong>
+            <span>Werkwoorden, tijden en leesvaardigheid</span>
+        </button>
+        <button class="category-card" type="button" data-category="Spaans" onclick="filterCategory('Spaans')">
+            <span class="category-icon">💃</span>
+            <strong>Spaans</strong>
+            <span>Vocabulaire en werkwoordvervoegingen</span>
+        </button>
+
+        <!-- Exact & Natuur -->
+        <button class="category-card" type="button" data-category="Wiskunde A" onclick="filterCategory('Wiskunde A')">
+            <span class="category-icon">📈</span>
+            <strong>Wiskunde A</strong>
+            <span>Statistiek, kansrekening en grafieken</span>
+        </button>
+        <button class="category-card" type="button" data-category="Wiskunde B" onclick="filterCategory('Wiskunde B')">
+            <span class="category-icon">📐</span>
+            <strong>Wiskunde B</strong>
+            <span>Differentiëren, meetkunde en formules</span>
+        </button>
+        <button class="category-card" type="button" data-category="Natuurkunde" onclick="filterCategory('Natuurkunde')">
+            <span class="category-icon">⚡</span>
+            <strong>Natuurkunde</strong>
+            <span>Krachten, elektriciteit en straling</span>
+        </button>
+        <button class="category-card" type="button" data-category="Scheikunde" onclick="filterCategory('Scheikunde')">
+            <span class="category-icon">🧪</span>
+            <strong>Scheikunde</strong>
+            <span>Reactievergelijkingen, mol en zuren</span>
+        </button>
+        <button class="category-card" type="button" data-category="Biologie" onclick="filterCategory('Biologie')">
+            <span class="category-icon">🧬</span>
+            <strong>Biologie</strong>
+            <span>Cellen, DNA, ecologie en het lichaam</span>
+        </button>
+        <button class="category-card" type="button" data-category="Informatica" onclick="filterCategory('Informatica')">
+            <span class="category-icon">💻</span>
+            <strong>Informatica</strong>
+            <span>Programmeren, databases en netwerken</span>
+        </button>
+
+        <!-- Economie & Maatschappij -->
+        <button class="category-card" type="button" data-category="Economie" onclick="filterCategory('Economie')">
+            <span class="category-icon">📊</span>
+            <strong>Economie</strong>
+            <span>Marktvormen, welvaart en conjunctuur</span>
+        </button>
+        <button class="category-card" type="button" data-category="Bedrijfseconomie" onclick="filterCategory('Bedrijfseconomie')">
+            <span class="category-icon">💼</span>
+            <strong>Bedrijfseconomie</strong>
+            <span>Balans, winst-en-verlies en marketing</span>
+        </button>
+        <button class="category-card" type="button" data-category="Geschiedenis" onclick="filterCategory('Geschiedenis')">
+            <span class="category-icon">🏛️</span>
+            <strong>Geschiedenis</strong>
+            <span>Tijdvakken, oorlogen en wereldpolitiek</span>
+        </button>
+        <button class="category-card" type="button" data-category="Aardrijkskunde" onclick="filterCategory('Aardrijkskunde')">
+            <span class="category-icon">🗺️</span>
+            <strong>Aardrijkskunde</strong>
+            <span>Klimaat, platentektoniek en globalisering</span>
+        </button>
+        <button class="category-card" type="button" data-category="Maatschappijleer" onclick="filterCategory('Maatschappijleer')">
+            <span class="category-icon">⚖️</span>
+            <strong>Maatschappijleer</strong>
+            <span>Rechtsstaat, democratie en pluriformiteit</span>
+        </button>
+        <button class="category-card" type="button" data-category="Filosofie" onclick="filterCategory('Filosofie')">
+            <span class="category-icon">🧠</span>
+            <strong>Filosofie</strong>
+            <span>Ethiek, denkers en kennisleer</span>
+        </button>
+
+        <!-- Cultuur -->
+        <button class="category-card" type="button" data-category="Kunst & CKV" onclick="filterCategory('Kunst & CKV')">
+            <span class="category-icon">🎨</span>
+            <strong>Kunst &amp; CKV</strong>
+            <span>Kunstgeschiedenis, stromingen en analyse</span>
+        </button>
+    </div>
+</section>
+
+<!-- =====================================
      MARKTPLAATS
 ===================================== -->
 <section class="products-section" id="ontdekken">
@@ -113,39 +224,19 @@
         <div class="section-heading">
             <span class="section-label">DE STUDYSWAP MARKTPLAATS</span>
             <h2>Ontdek jouw volgende samenvatting 💜</h2>
-            <p>Filter op vak of zoek direct op onderwerp, niveau of verkoper.</p>
+            <p>Kies hierboven een vak of zoek direct op onderwerp, niveau of verkoper.</p>
             <div class="quality-badge marketplace-badge">
                 🛡️ AI-gecontroleerd &amp; Studenten-rated ⭐⭐⭐⭐⭐
             </div>
         </div>
-        <div class="search-wrapper">
-            <label for="searchInput" class="visually-hidden">Zoek samenvattingen</label>
-            <span aria-hidden="true">⌕</span>
-            <input type="search" id="searchInput" placeholder="Zoek op vak of samenvatting..." autocomplete="off">
+        <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
+            <button type="button" class="secondary-btn" onclick="filterCategory('Alles')">Alle vakken tonen</button>
+            <div class="search-wrapper">
+                <label for="searchInput" class="visually-hidden">Zoek samenvattingen</label>
+                <span aria-hidden="true">⌕</span>
+                <input type="search" id="searchInput" placeholder="Zoek op vak of samenvatting..." autocomplete="off">
+            </div>
         </div>
-    </div>
-
-    <!-- Snelle filterbalk boven de producten -->
-    <div class="filter-pills" id="filterPills" role="group" aria-label="Filter op vak">
-        <button type="button" class="filter-pill active" data-category="Alles" onclick="filterCategory('Alles')">Alles</button>
-        <button type="button" class="filter-pill" data-category="Nederlands" onclick="filterCategory('Nederlands')">📚 Nederlands</button>
-        <button type="button" class="filter-pill" data-category="Engels" onclick="filterCategory('Engels')">🌍 Engels</button>
-        <button type="button" class="filter-pill" data-category="Duits" onclick="filterCategory('Duits')">🥨 Duits</button>
-        <button type="button" class="filter-pill" data-category="Frans" onclick="filterCategory('Frans')">🥐 Frans</button>
-        <button type="button" class="filter-pill" data-category="Spaans" onclick="filterCategory('Spaans')">💃 Spaans</button>
-        <button type="button" class="filter-pill" data-category="Wiskunde A" onclick="filterCategory('Wiskunde A')">📈 Wiskunde A</button>
-        <button type="button" class="filter-pill" data-category="Wiskunde B" onclick="filterCategory('Wiskunde B')">📐 Wiskunde B</button>
-        <button type="button" class="filter-pill" data-category="Natuurkunde" onclick="filterCategory('Natuurkunde')">⚡ Natuurkunde</button>
-        <button type="button" class="filter-pill" data-category="Scheikunde" onclick="filterCategory('Scheikunde')">🧪 Scheikunde</button>
-        <button type="button" class="filter-pill" data-category="Biologie" onclick="filterCategory('Biologie')">🧬 Biologie</button>
-        <button type="button" class="filter-pill" data-category="Informatica" onclick="filterCategory('Informatica')">💻 Informatica</button>
-        <button type="button" class="filter-pill" data-category="Economie" onclick="filterCategory('Economie')">📊 Economie</button>
-        <button type="button" class="filter-pill" data-category="Bedrijfseconomie" onclick="filterCategory('Bedrijfseconomie')">💼 Bedrijfseconomie</button>
-        <button type="button" class="filter-pill" data-category="Geschiedenis" onclick="filterCategory('Geschiedenis')">🏛️ Geschiedenis</button>
-        <button type="button" class="filter-pill" data-category="Aardrijkskunde" onclick="filterCategory('Aardrijkskunde')">🗺️ Aardrijkskunde</button>
-        <button type="button" class="filter-pill" data-category="Maatschappijleer" onclick="filterCategory('Maatschappijleer')">⚖️ Maatschappijleer</button>
-        <button type="button" class="filter-pill" data-category="Filosofie" onclick="filterCategory('Filosofie')">🧠 Filosofie</button>
-        <button type="button" class="filter-pill" data-category="Kunst & CKV" onclick="filterCategory('Kunst & CKV')">🎨 Kunst &amp; CKV</button>
     </div>
 
     <div class="product-grid" id="productGrid">
@@ -374,68 +465,4 @@
         <button class="close" onclick="closeLogin()" type="button" aria-label="Inlogvenster sluiten">✕</button>
         <span class="tag" id="loginTag">WELKOM TERUG 💜</span>
         <h2 id="loginTitle">Leuk dat je er weer bent!</h2>
-        <p id="loginSubtitle">Log in op je StudySwap-account om samenvattingen te kopen of onder jouw naam te verkopen.</p>
-
-        <form id="loginForm">
-            <label for="loginEmail">E-mailadres</label>
-            <input type="email" id="loginEmail" name="email" placeholder="jouw@email.nl" autocomplete="email" required>
-
-            <label for="loginPassword">Wachtwoord</label>
-            <input type="password" id="loginPassword" name="password" placeholder="Jouw wachtwoord" autocomplete="current-password" required>
-
-            <button type="submit" class="primary-btn submit-btn" id="loginSubmitBtn">Inloggen →</button>
-        </form>
-        <p class="login-register">
-            <span id="loginSwitchText">Nog geen account?</span>
-            <a href="#loginModal" id="toggleAuthMode">Maak een account aan</a>
-        </p>
-    </div>
-</div>
-
-<!-- =====================================
-     FOOTER
-===================================== -->
-<footer class="footer">
-    <div class="footer-content">
-        <div class="footer-brand">
-            <a href="#home" class="logo">
-                <span class="logo-icon">S</span>
-                <span>StudySwap</span>
-            </a>
-            <p>Samen slimmer studeren. Ontdek, deel en verkoop jouw samenvattingen met andere leerlingen.</p>
-        </div>
-        <div class="footer-links">
-            <h3>Ontdek</h3>
-            <a href="#home">Home</a>
-            <a href="#wat-is-het">Wat is het?</a>
-            <a href="#ontdekken">Marktplaats &amp; Vakken</a>
-        </div>
-        <div class="footer-links">
-            <h3>Verkopen</h3>
-            <a href="#verdienmodellen">Verdienmodellen</a>
-            <a href="#verkopen">Hoe werkt het?</a>
-            <button type="button" onclick="openSell()">Samenvatting plaatsen</button>
-        </div>
-        <div class="footer-links">
-            <h3>Mijn account</h3>
-            <button type="button" onclick="openLogin()">Inloggen / Registreren</button>
-        </div>
-    </div>
-    <div class="footer-bottom">
-        <p>© <span id="currentYear"></span> StudySwap. Alle rechten voorbehouden.</p>
-        <p>Gemaakt om samen slimmer te studeren. 💜</p>
-    </div>
-</footer>
-
-<!-- =====================================
-     JAVASCRIPT
-===================================== -->
-<script>
-    document.getElementById("currentYear").textContent = new Date().getFullYear();
-</script>
-<script src="app.js"></script>
-<script src="beheer.js"></script>
-<script src="test.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" async></script>
-</body>
-</html>
+        <p id="loginSubtitle">Log in op je StudySwap-account om samenvattingen te
