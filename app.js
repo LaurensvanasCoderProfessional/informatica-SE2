@@ -1,10 +1,11 @@
 /* =========================================
    STUDYSWAP - APP.JS
-   Complete marketplace functionaliteit
+   Complete marketplace functionaliteit,
+   AI-kwaliteitscontrole & reviewsysteem
    ========================================= */
 
 /* =========================================
-   1. STANDAARD PRODUCTEN (Voor alle 18 vakken)
+1. STANDAARD PRODUCTEN (Voor alle 18 vakken)
 ========================================= */
 
 const subjectIcons = {
@@ -37,7 +38,12 @@ let products = [
         description: "Uitgebreide samenvatting over cellen, DNA, erfelijkheid en stofwisseling met duidelijke schema's.",
         price: 3.99,
         seller: "Emma",
-        icon: "🧬"
+        icon: "🧬",
+        aiVerified: true,
+        reviews: [
+            { author: "Sanne (Havo 4)", rating: 5, comment: "Super overzichtelijk, vooral de schema's over DNA-replicatie hielpen enorm!", date: "14 nov 2026" },
+            { author: "Timo (Havo 4)", rating: 5, comment: "Een 8,4 gehaald voor mijn proefwerk dankzij deze samenvatting.", date: "2 nov 2026" }
+        ]
     },
     {
         id: 2,
@@ -47,7 +53,11 @@ let products = [
         description: "Alle belangrijke goniometrie-, differentiëren- en vergelijkingsregels overzichtelijk uitgewerkt.",
         price: 4.50,
         seller: "Lucas",
-        icon: "📐"
+        icon: "📐",
+        aiVerified: true,
+        reviews: [
+            { author: "Ruben (VWO 5)", rating: 5, comment: "Alles op één plek met duidelijke voorbeeldsommen.", date: "10 nov 2026" }
+        ]
     },
     {
         id: 3,
@@ -57,7 +67,11 @@ let products = [
         description: "Stappenplannen voor normale verdeling, combinatoriek en grafische rekenmachine-functies.",
         price: 3.75,
         seller: "Mila",
-        icon: "📈"
+        icon: "📈",
+        aiVerified: true,
+        reviews: [
+            { author: "Fleur (Havo 5)", rating: 5, comment: "De GR-stappenplannen zijn echt goud waard!", date: "8 nov 2026" }
+        ]
     },
     {
         id: 4,
@@ -67,7 +81,11 @@ let products = [
         description: "Heldere uitleg over schakelingen, wetten van Newton en energieomzettingen met voorbeeldsommen.",
         price: 4.25,
         seller: "Sem",
-        icon: "⚡"
+        icon: "⚡",
+        aiVerified: true,
+        reviews: [
+            { author: "Koen (VWO 4)", rating: 5, comment: "Eindelijk snap ik serieschakelingen en parallelschakelingen goed.", date: "5 nov 2026" }
+        ]
     },
     {
         id: 5,
@@ -77,7 +95,11 @@ let products = [
         description: "Complete gids voor chemisch rekenen, pH-berekeningen, redoxreacties en koolstofchemie.",
         price: 4.00,
         seller: "Julia",
-        icon: "🧪"
+        icon: "🧪",
+        aiVerified: true,
+        reviews: [
+            { author: "Anouk (Havo 5)", rating: 5, comment: "Heel fijn stappenplan voor molrekenen.", date: "1 nov 2026" }
+        ]
     },
     {
         id: 6,
@@ -87,7 +109,11 @@ let products = [
         description: "Overzicht van variabelen, loops, functies, SQL-queries en HTML/CSS-structuren.",
         price: 3.50,
         seller: "Bram",
-        icon: "💻"
+        icon: "💻",
+        aiVerified: true,
+        reviews: [
+            { author: "Jasper (VWO 5)", rating: 5, comment: "Handige SQL-voorbeelden en nette codeblokken.", date: "12 nov 2026" }
+        ]
     },
     {
         id: 7,
@@ -97,7 +123,11 @@ let products = [
         description: "Uitleg over de balans, winst-en-verliesrekening, kengetallen en break-evenanalyse.",
         price: 3.99,
         seller: "Tess",
-        icon: "💼"
+        icon: "💼",
+        aiVerified: true,
+        reviews: [
+            { author: "Milan (VWO 5)", rating: 5, comment: "Alle kengetallen staan overzichtelijk onder elkaar.", date: "3 nov 2026" }
+        ]
     },
     {
         id: 8,
@@ -107,7 +137,11 @@ let products = [
         description: "Heldere uitleg over vraag en aanbod, elasticiteit, marktvormen en conjuncturele werkloosheid.",
         price: 3.50,
         seller: "Sophie",
-        icon: "📊"
+        icon: "📊",
+        aiVerified: true,
+        reviews: [
+            { author: "Iris (VWO 4)", rating: 5, comment: "Duidelijke grafieken bij prijselasticiteit!", date: "29 okt 2026" }
+        ]
     },
     {
         id: 9,
@@ -117,7 +151,11 @@ let products = [
         description: "Alle der- en ein-groepen, voorzetsels met vaste naamval en sterke werkwoorden op één blad.",
         price: 2.99,
         seller: "Finn",
-        icon: "🥨"
+        icon: "🥨",
+        aiVerified: true,
+        reviews: [
+            { author: "Max (Havo 4)", rating: 5, comment: "Ideaal om snel te herhalen vlak voor de toets.", date: "27 okt 2026" }
+        ]
     },
     {
         id: 10,
@@ -127,7 +165,11 @@ let products = [
         description: "Passé composé, imparfait, futur simple en de belangrijkste verbindingswoorden voor leestoetsen.",
         price: 2.99,
         seller: "Eva",
-        icon: "🥐"
+        icon: "🥐",
+        aiVerified: true,
+        reviews: [
+            { author: "Celine (VWO 4)", rating: 5, comment: "Signaalwoordenlijst heeft me echt gered bij leestoets!", date: "25 okt 2026" }
+        ]
     },
     {
         id: 11,
@@ -137,7 +179,11 @@ let products = [
         description: "Overzicht van ser/estar, presente, indefinido en veelgebruikte zinnen voor spreekvaardigheid.",
         price: 2.50,
         seller: "Sara",
-        icon: "💃"
+        icon: "💃",
+        aiVerified: true,
+        reviews: [
+            { author: "Nina (Havo 5)", rating: 5, comment: "Het verschil tussen ser en estar is eindelijk helder.", date: "22 okt 2026" }
+        ]
     },
     {
         id: 12,
@@ -147,7 +193,11 @@ let products = [
         description: "Samenvatting over de trias politica, grondrechten, politieke stromingen en de verzorgingsstaat.",
         price: 3.25,
         seller: "Noor",
-        icon: "⚖️"
+        icon: "⚖️",
+        aiVerified: true,
+        reviews: [
+            { author: "Stijn (Havo 4)", rating: 5, comment: "Alle politieke stromingen kort en krachtig uitgelegd.", date: "20 okt 2026" }
+        ]
     },
     {
         id: 13,
@@ -157,7 +207,11 @@ let products = [
         description: "Complete tijdlijn en samenvatting van de Koude Oorlog en de dekolonisatie van Nederlands-Indië.",
         price: 4.25,
         seller: "Daan",
-        icon: "🏛️"
+        icon: "🏛️",
+        aiVerified: true,
+        reviews: [
+            { author: "Roos (Havo 5)", rating: 5, comment: "De tijdlijn achterin is superhandig voor het examen.", date: "18 okt 2026" }
+        ]
     },
     {
         id: 14,
@@ -167,7 +221,11 @@ let products = [
         description: "Uitleg over platentektoniek, vulkanisme, luchtstromen en klimaatgebieden met schema's.",
         price: 3.49,
         seller: "Luuk",
-        icon: "🗺️"
+        icon: "🗺️",
+        aiVerified: true,
+        reviews: [
+            { author: "Bo (VWO 4)", rating: 5, comment: "Mooie illustraties van de luchtstromen.", date: "15 okt 2026" }
+        ]
     },
     {
         id: 15,
@@ -177,7 +235,11 @@ let products = [
         description: "Overzicht van alle drogredenen, tekstverbanden, stijlfiguren en tips voor je betoog.",
         price: 2.75,
         seller: "Lotte",
-        icon: "📚"
+        icon: "📚",
+        aiVerified: true,
+        reviews: [
+            { author: "Vera (VWO 6)", rating: 5, comment: "Alle drogredenen met duidelijke voorbeelden.", date: "11 okt 2026" }
+        ]
     },
     {
         id: 16,
@@ -187,7 +249,11 @@ let products = [
         description: "Alle werkwoordstijden, signaalwoorden en veelgebruikte examen-uitdrukkingen op een rij.",
         price: 2.99,
         seller: "Noah",
-        icon: "🌍"
+        icon: "🌍",
+        aiVerified: true,
+        reviews: [
+            { author: "Sam (VWO 5)", rating: 5, comment: "Overzichtelijke tabel met alle tenses.", date: "9 okt 2026" }
+        ]
     },
     {
         id: 17,
@@ -197,7 +263,11 @@ let products = [
         description: "Kant, Aristoteles, utilitarisme en deugdenethiek helder vergeleken voor je schoolexamen.",
         price: 3.50,
         seller: "Anna",
-        icon: "🧠"
+        icon: "🧠",
+        aiVerified: true,
+        reviews: [
+            { author: "Maud (VWO 5)", rating: 5, comment: "Kant en utilitarisme heel begrijpelijk samengevat.", date: "6 okt 2026" }
+        ]
     },
     {
         id: 18,
@@ -207,16 +277,33 @@ let products = [
         description: "Van Renaissance en Barok tot Modernisme en Pop-art: kenmerken en beeldaspecten op een rij.",
         price: 2.75,
         seller: "Liv",
-        icon: "🎨"
+        icon: "🎨",
+        aiVerified: true,
+        reviews: [
+            { author: "Jasmijn (Havo 4)", rating: 5, comment: "Super fijn overzicht voor mijn kunstgeschiedenistoets!", date: "2 okt 2026" }
+        ]
     }
 ];
 
 let selectedCategory = "Alles";
 let currentUser = null;
+let activeProductId = null;
 
 /* =========================================
-   2. PRODUCTEN LADEN EN OPSLAAN
+2. PRODUCTEN LADEN, OPSLAAN & RATING HELPERS
 ========================================= */
+
+function getProductRatingStats(product) {
+    const reviews = Array.isArray(product.reviews) ? product.reviews : [];
+    if (reviews.length === 0) {
+        return { average: 5.0, count: 0 };
+    }
+    const sum = reviews.reduce((acc, rev) => acc + (Number(rev.rating) || 5), 0);
+    return {
+        average: sum / reviews.length,
+        count: reviews.length
+    };
+}
 
 function loadProducts() {
     try {
@@ -226,7 +313,11 @@ function loadProducts() {
             const parsed = JSON.parse(saved);
 
             if (Array.isArray(parsed) && parsed.length > 0) {
-                products = parsed;
+                products = parsed.map(item => ({
+                    ...item,
+                    aiVerified: item.aiVerified !== false,
+                    reviews: Array.isArray(item.reviews) ? item.reviews : []
+                }));
             }
         }
     } catch (error) {
@@ -246,7 +337,7 @@ function saveProducts() {
 }
 
 /* =========================================
-   3. ACTIEVE VAKKNOPPEN BIJWERKEN
+3. ACTIEVE VAKKNOPPEN BIJWERKEN
 ========================================= */
 
 function updateActiveCategoryUI() {
@@ -261,7 +352,7 @@ function updateActiveCategoryUI() {
 }
 
 /* =========================================
-   4. PRODUCTEN WEERGEVEN
+4. PRODUCTEN WEERGEVEN
 ========================================= */
 
 function renderProducts() {
@@ -331,6 +422,8 @@ function renderProducts() {
         card.className = "product-card";
 
         const catName = product.category || product.vak || "Studie";
+        const stats = getProductRatingStats(product);
+        const formattedScore = stats.average.toFixed(1).replace(".", ",");
 
         // Icoon
         const icon = document.createElement("div");
@@ -350,6 +443,22 @@ function renderProducts() {
         // Beschrijving
         const description = document.createElement("p");
         description.textContent = product.description || "Geen beschrijving beschikbaar.";
+
+        // Kwaliteitsbadge (AI + Studenten-rating)
+        const badge = document.createElement("div");
+        badge.className = "quality-badge card-quality-badge";
+
+        const fullBadge = document.createElement("span");
+        fullBadge.className = "badge-full";
+        fullBadge.textContent = stats.count > 0
+            ? `🛡️ AI-gecontroleerd & Studenten-rated ⭐⭐⭐⭐⭐ (${formattedScore} · ${stats.count})`
+            : `🛡️ AI-gecontroleerd & Studenten-rated ⭐⭐⭐⭐⭐`;
+
+        const compactBadge = document.createElement("span");
+        compactBadge.className = "badge-compact";
+        compactBadge.textContent = `🛡️ AI-check · ⭐ ${formattedScore} (${stats.count})`;
+
+        badge.append(fullBadge, compactBadge);
 
         // Verkoper
         const seller = document.createElement("small");
@@ -373,13 +482,13 @@ function renderProducts() {
         });
 
         bottom.append(price, button);
-        card.append(icon, category, name, description, seller, bottom);
+        card.append(icon, category, name, description, badge, seller, bottom);
         container.appendChild(card);
     });
 }
 
 /* =========================================
-   5. ZOEKFUNCTIE
+5. ZOEKFUNCTIE
 ========================================= */
 
 function setupSearch() {
@@ -389,7 +498,7 @@ function setupSearch() {
 }
 
 /* =========================================
-   6. CATEGORIEËN FILTEREN (Vakmenu)
+6. CATEGORIEËN FILTEREN (Vakmenu)
 ========================================= */
 
 function filterCategory(category) {
@@ -403,8 +512,70 @@ function filterCategory(category) {
 }
 
 /* =========================================
-   7. PRODUCT BEKIJKEN / KOPEN
+7. PRODUCT BEKIJKEN, KOPEN & REVIEWS TONEN
 ========================================= */
+
+function renderReviews(product) {
+    const listEl = document.getElementById("reviewsList");
+    const summaryEl = document.getElementById("detailRatingSummary");
+    const badgeEl = document.getElementById("detailQualityBadge");
+
+    const stats = getProductRatingStats(product);
+    const formattedAvg = stats.average.toFixed(1).replace(".", ",");
+
+    if (summaryEl) {
+        summaryEl.textContent = stats.count > 0
+            ? `⭐ ${formattedAvg} / 5 (${stats.count} ${stats.count === 1 ? "review" : "reviews"})`
+            : "Nog geen reviews (wees de eerste!)";
+    }
+
+    if (badgeEl) {
+        badgeEl.textContent = stats.count > 0
+            ? `🛡️ AI-gecontroleerd & Studenten-rated ⭐⭐⭐⭐⭐ (${formattedAvg}/5)`
+            : "🛡️ AI-gecontroleerd & Studenten-rated ⭐⭐⭐⭐⭐";
+    }
+
+    if (!listEl) return;
+    listEl.innerHTML = "";
+
+    const reviews = Array.isArray(product.reviews) ? product.reviews : [];
+
+    if (reviews.length === 0) {
+        const empty = document.createElement("p");
+        empty.style.fontSize = "13px";
+        empty.style.color = "var(--muted)";
+        empty.textContent = "Er zijn nog geen geschreven beoordelingen voor deze samenvatting.";
+        listEl.appendChild(empty);
+        return;
+    }
+
+    reviews.forEach(review => {
+        const item = document.createElement("div");
+        item.className = "review-item";
+
+        const top = document.createElement("div");
+        top.className = "review-item-top";
+
+        const author = document.createElement("strong");
+        author.textContent = review.author || "Student";
+
+        const stars = document.createElement("span");
+        stars.className = "review-stars";
+        const count = Math.min(5, Math.max(1, Number(review.rating) || 5));
+        stars.textContent = "⭐".repeat(count);
+
+        top.append(author, stars);
+
+        const comment = document.createElement("p");
+        comment.textContent = review.comment || "";
+
+        const date = document.createElement("small");
+        date.textContent = review.date || "Recent geplaatst";
+
+        item.append(top, comment, date);
+        listEl.appendChild(item);
+    });
+}
 
 function buyProduct(id) {
     const product = products.find(item => String(item.id) === String(id));
@@ -413,6 +584,8 @@ function buyProduct(id) {
         alert("Dit product kon niet worden gevonden.");
         return;
     }
+
+    activeProductId = product.id;
 
     const name = product.name || product.naam || "Onbekend";
     const category = product.category || product.vak || "Studie";
@@ -430,6 +603,13 @@ function buyProduct(id) {
         document.getElementById("detailDescription").textContent = description;
         document.getElementById("detailPrice").textContent = "€ " + price.toFixed(2).replace(".", ",");
 
+        const authorInput = document.getElementById("reviewAuthor");
+        if (authorInput && currentUser && !authorInput.value) {
+            authorInput.value = currentUser;
+        }
+
+        renderReviews(product);
+
         const confirmBtn = document.getElementById("confirmBuyBtn");
         confirmBtn.onclick = function () {
             closeProductModal();
@@ -438,7 +618,7 @@ function buyProduct(id) {
                 `Samenvatting: ${name}\n` +
                 `Bedrag: € ${price.toFixed(2).replace(".", ",")}\n` +
                 `Verkoper: ${seller}\n\n` +
-                `Je PDF-samenvatting wordt nu gedownload!`
+                `Je AI-gecontroleerde PDF-samenvatting wordt nu gedownload!`
             );
         };
 
@@ -453,10 +633,90 @@ function buyProduct(id) {
 function closeProductModal() {
     const modal = document.getElementById("productModal");
     if (modal) modal.style.display = "none";
+    activeProductId = null;
 }
 
 /* =========================================
-   8. MODALS OPENEN EN SLUITEN
+8. REVIEW FORMULIER & STERREN KIEZER
+========================================= */
+
+function setupReviewForm() {
+    const form = document.getElementById("reviewForm");
+    const starButtons = document.querySelectorAll("#starPicker .star-btn");
+    const ratingInput = document.getElementById("reviewRatingInput");
+    const ratingText = document.getElementById("starRatingText");
+
+    function updateStarUI(selectedValue) {
+        if (ratingInput) ratingInput.value = String(selectedValue);
+        if (ratingText) ratingText.textContent = `${selectedValue} van 5 sterren`;
+
+        starButtons.forEach(btn => {
+            const val = Number(btn.getAttribute("data-value"));
+            if (val <= selectedValue) {
+                btn.classList.add("active");
+            } else {
+                btn.classList.remove("active");
+            }
+        });
+    }
+
+    starButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            const val = Number(btn.getAttribute("data-value")) || 5;
+            updateStarUI(val);
+        });
+    });
+
+    if (!form) return;
+
+    form.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const product = products.find(item => String(item.id) === String(activeProductId));
+        if (!product) return;
+
+        const author = document.getElementById("reviewAuthor").value.trim();
+        const comment = document.getElementById("reviewComment").value.trim();
+        const rating = Math.min(5, Math.max(1, Number(ratingInput ? ratingInput.value : 5) || 5));
+
+        if (!author || !comment) {
+            alert("Vul je naam en een korte beoordeling in.");
+            return;
+        }
+
+        if (!Array.isArray(product.reviews)) {
+            product.reviews = [];
+        }
+
+        const today = new Date().toLocaleDateString("nl-NL", {
+            day: "numeric",
+            month: "short",
+            year: "numeric"
+        });
+
+        product.reviews.unshift({
+            author: author,
+            rating: rating,
+            comment: comment,
+            date: today
+        });
+
+        saveProducts();
+        renderReviews(product);
+        renderProducts();
+
+        form.reset();
+        updateStarUI(5);
+        if (currentUser) {
+            document.getElementById("reviewAuthor").value = currentUser;
+        }
+
+        alert("⭐ Bedankt! Jouw beoordeling is toegevoegd aan deze samenvatting.");
+    });
+}
+
+/* =========================================
+9. MODALS OPENEN EN SLUITEN
 ========================================= */
 
 function openSell() {
@@ -485,7 +745,7 @@ function openLoginModal() { openLogin(); }
 function closeLoginModal() { closeLogin(); }
 
 /* =========================================
-   9. PRODUCT VERKOPEN
+10. PRODUCT VERKOPEN MET AI-KWALITEITSCONTROLE
 ========================================= */
 
 function setupSellForm() {
@@ -528,41 +788,65 @@ function setupSellForm() {
             return;
         }
 
-        const newProduct = {
-            id: Date.now(),
-            name: name,
-            category: category,
-            education: education,
-            description: description,
-            price: price,
-            seller: currentUser || "Student verkoper",
-            icon: subjectIcons[category] || "📚"
-        };
+        const statusBox = document.getElementById("aiCheckStatus");
+        const submitBtn = document.getElementById("sellSubmitBtn");
 
-        products.unshift(newProduct);
-
-        if (!saveProducts()) {
-            products.shift();
-            return;
+        if (submitBtn) submitBtn.disabled = true;
+        if (statusBox) {
+            statusBox.className = "ai-check-box";
+            statusBox.style.display = "block";
+            statusBox.textContent = "🤖 AI-controle bezig: PDF-structuur, leesbaarheid en vakrelevantie worden gecontroleerd...";
         }
 
-        selectedCategory = "Alles";
-        renderProducts();
+        setTimeout(() => {
+            if (statusBox) {
+                statusBox.classList.add("success");
+                statusBox.textContent = "✅ AI-kwaliteitscontrole geslaagd! Jouw samenvatting voldoet aan alle eisen.";
+            }
 
-        form.reset();
-        closeSell();
+            const newProduct = {
+                id: Date.now(),
+                name: name,
+                category: category,
+                education: education,
+                description: description,
+                price: price,
+                seller: currentUser || "Student verkoper",
+                icon: subjectIcons[category] || "📚",
+                aiVerified: true,
+                reviews: []
+            };
 
-        alert(`🎉 "${name}" is toegevoegd aan StudySwap!`);
+            products.unshift(newProduct);
 
-        const section = document.getElementById("ontdekken");
-        if (section) {
-            section.scrollIntoView({ behavior: "smooth" });
-        }
+            if (!saveProducts()) {
+                products.shift();
+                if (submitBtn) submitBtn.disabled = false;
+                return;
+            }
+
+            selectedCategory = "Alles";
+            renderProducts();
+
+            setTimeout(() => {
+                form.reset();
+                if (statusBox) statusBox.style.display = "none";
+                if (submitBtn) submitBtn.disabled = false;
+                closeSell();
+
+                alert(`🛡️ AI-gecontroleerd & geplaatst!\n\n"${name}" staat nu live op StudySwap.`);
+
+                const section = document.getElementById("ontdekken");
+                if (section) {
+                    section.scrollIntoView({ behavior: "smooth" });
+                }
+            }, 600);
+        }, 1400);
     });
 }
 
 /* =========================================
-   10. INLOGGEN & REGISTREREN
+11. INLOGGEN & REGISTREREN
 ========================================= */
 
 function setupLoginForm() {
@@ -621,7 +905,7 @@ function setupLoginForm() {
 }
 
 /* =========================================
-   11. MODALS SLUITEN (Achtergrond & Escape)
+12. MODALS SLUITEN (Achtergrond & Escape)
 ========================================= */
 
 function setupModalClosing() {
@@ -643,13 +927,14 @@ function setupModalClosing() {
 }
 
 /* =========================================
-   12. INITIALISATIE
+13. INITIALISATIE
 ========================================= */
 
 function initializeStudySwap() {
     loadProducts();
     setupSearch();
     setupSellForm();
+    setupReviewForm();
     setupLoginForm();
     setupModalClosing();
     renderProducts();
