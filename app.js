@@ -745,14 +745,98 @@ function openLoginModal() { openLogin(); }
 function closeLoginModal() { closeLogin(); }
 
 /* =========================================
-10. PRODUCT VERKOPEN MET AI-KWALITEITSCONTROLE
+10. PRODUCT VERKOPEN MET AUTOMATISCHE PDF-CONTROLE
 ========================================= */
+
+const subjectKeywords = {
+    Nederlands: ["tekst", "stijlfiguur", "argument", "betoog", "literatuur", "drogreden", "alinea", "schrijver"],
+    Engels: ["grammar", "tense", "verb", "vocabulary", "sentence", "past", "present", "idiom", "english"],
+    Duits: ["naamval", "der", "die", "das", "werkwoord", "voorzetsel", "duits", "grammatica", "sein", "haben"],
+    Frans: ["frans", "passé", "composé", "imparfait", "werkwoord", "signaalwoord", "être", "avoir", "futur"],
+    Spaans: ["spaans", "ser", "estar", "werkwoord", "presente", "indefinido", "vocabulaire", "vervoeging"],
+    "Wiskunde A": ["kans", "statistiek", "verdeling", "grafiek", "formule", "procent", "gemiddelde", "tabel"],
+    "Wiskunde B": ["functie", "afgeleide", "differentiëren", "sinus", "cosinus", "vergelijking", "formule", "grafiek"],
+    Natuurkunde: ["kracht", "energie", "spanning", "stroom", "snelheid", "newton", "watt", "schakeling", "massa"],
+    Scheikunde: ["mol", "reactie", "atoom", "molecuul", "zuur", "base", "ph", "oplossing", "stof", "binding"],
+    Biologie: ["cel", "dna", "eiwit", "ecosysteem", "evolutie", "orgaan", "stofwisseling", "erfelijkheid", "plant"],
+    Informatica: ["variabele", "functie", "loop", "database", "sql", "html", "css", "code", "algoritme", "data"],
+    Economie: ["vraag", "aanbod", "prijs", "markt", "inkomen", "belasting", "inflatie", "conjunctuur", "elasticiteit"],
+    Bedrijfseconomie: ["balans", "winst", "verlies", "kosten", "omzet", "liquiditeit", "vermogen", "break-even", "activa"],
+    Geschiedenis: ["eeuw", "oorlog", "regering", "koning", "revolutie", "verdrag", "politiek", "kolonie", "tijdvak"],
+    Aardrijkskunde: ["klimaat", "aarde", "plaat", "bevolking", "rivier", "temperatuur", "neerslag", "vulkanisme"],
+    Maatschappijleer: ["rechtsstaat", "democratie", "grondwet", "politiek", "partij", "regering", "cultuur", "normen"],
+    Filosofie: ["ethiek", "filosoof", "kant", "aristoteles", "kennis", "moraal", "rede", "waarheid", "denken"],
+    "Kunst & CKV": ["kunst", "stroming", "schilderij", "stijl", "architectuur", "renaissance", "modern", "beeldaspect"]
+};
+
+async function leesPdfTekst(file) {
+    if (typeof pdfjsLib === "undefined") {
+        // Fallback als PDF.js offline niet geladen kon worden
+        return { tekst: "", aantalPaginas: 1, fallback: true };
+    }
+
+    pdfjsLib.GlobalWorkerOptions.workerSrc =
+        "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+
+    const arrayBuffer = await file.arrayBuffer();
+    const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+    let volledigeTekst = "";
+
+    for (let paginaNr = 1; paginaNr <= pdf.numPages; paginaNr++) {
+        const pagina = await pdf.getPage(paginaNr);
+        const content = await pagina.getTextContent();
+        const paginaTekst = content.items.map(item => item.str).join(" ");
+        volledigeTekst += " " + paginaTekst;
+    }
+
+    return {
+        tekst: volledigeTekst.trim(),
+        aantalPaginas: pdf.numPages,
+        fallback: false
+    };
+}
+
+async function controleerPdfInhoud(file, titel, vak) {
+    const { tekst, aantalPaginas, fallback } = await leesPdfTekst(file);
+
+    if (fallback) {
+        if (file.size < 5000) {
+            return { goedgekeurd: false, reden: "Het bestand is te klein om een geldige samenvatting te zijn." };
+        }
+        return { goedgekeurd: true, reden: "Bestandsstructuur en grootte zijn goedgekeurd." };
+    }
+
+    const woorden = tekst.split(/\s+/).filter(w => w.length > 1);
+
+    if (woorden.length < 20) {
+        return {
+            goedgekeurd: false,
+            reden: `De PDF bevat te weinig leesbare tekst (${woorden.length} woorden). Upload een echte samenvatting.`
+        };
+    }
+
+    const tekstLower = (tekst + " " + titel).toLowerCase();
+    const trefwoorden = subjectKeywords[vak] || [];
+    const gevondenTrefwoorden = trefwoorden.filter(woord => tekstLower.includes(woord));
+
+    if (trefwoorden.length > 0 && gevondenTrefwoorden.length === 0) {
+        return {
+            goedgekeurd: false,
+            reden: `De inhoud van deze PDF lijkt niet over het vak ${vak} te gaan.`
+        };
+    }
+
+    return {
+        goedgekeurd: true,
+        reden: `${aantalPaginas} pagina('s) en ${woorden.length} woorden gecontroleerd; inhoud past bij ${vak}.`
+    };
+}
 
 function setupSellForm() {
     const form = document.getElementById("sellForm");
     if (!form) return;
 
-    form.addEventListener("submit", function (event) {
+    form.addEventListener("submit", async function (event) {
         event.preventDefault();
 
         const name = document.getElementById("productName").value.trim();
@@ -795,13 +879,24 @@ function setupSellForm() {
         if (statusBox) {
             statusBox.className = "ai-check-box";
             statusBox.style.display = "block";
-            statusBox.textContent = "🤖 AI-controle bezig: PDF-structuur, leesbaarheid en vakrelevantie worden gecontroleerd...";
+            statusBox.textContent = "🤖 Controle bezig: PDF-tekst, woordenaantal en vakrelevantie worden geanalyseerd...";
         }
 
-        setTimeout(() => {
+        try {
+            const resultaat = await controleerPdfInhoud(file, name, category);
+
+            if (!resultaat.goedgekeurd) {
+                if (statusBox) {
+                    statusBox.className = "ai-check-box error";
+                    statusBox.textContent = `❌ Afgekeurd: ${resultaat.reden}`;
+                }
+                if (submitBtn) submitBtn.disabled = false;
+                return;
+            }
+
             if (statusBox) {
-                statusBox.classList.add("success");
-                statusBox.textContent = "✅ AI-kwaliteitscontrole geslaagd! Jouw samenvatting voldoet aan alle eisen.";
+                statusBox.className = "ai-check-box success";
+                statusBox.textContent = `✅ Goedgekeurd: ${resultaat.reden}`;
             }
 
             const newProduct = {
@@ -834,14 +929,21 @@ function setupSellForm() {
                 if (submitBtn) submitBtn.disabled = false;
                 closeSell();
 
-                alert(`🛡️ AI-gecontroleerd & geplaatst!\n\n"${name}" staat nu live op StudySwap.`);
+                alert(`🛡️ Gecontroleerd & geplaatst!\n\n"${name}" staat nu live op StudySwap.`);
 
                 const section = document.getElementById("ontdekken");
                 if (section) {
                     section.scrollIntoView({ behavior: "smooth" });
                 }
-            }, 600);
-        }, 1400);
+            }, 1200);
+        } catch (error) {
+            console.error("PDF-controle fout:", error);
+            if (statusBox) {
+                statusBox.className = "ai-check-box error";
+                statusBox.textContent = "⚠️ Dit PDF-bestand kon niet worden gelezen. Controleer of het bestand niet beveiligd of beschadigd is.";
+            }
+            if (submitBtn) submitBtn.disabled = false;
+        }
     });
 }
 
