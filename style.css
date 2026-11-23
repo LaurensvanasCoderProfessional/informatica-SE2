@@ -293,28 +293,41 @@ a {
   color: var(--purple-dark);
   font-size: 13px;
   font-weight: 600;
-  margin-top: 30px;
+  margin-top: 28px;
 }
 
-.social-proof {
-  display: inline-block;
-  margin-top: 20px;
-  padding: 8px 14px;
-  background: rgba(255, 255, 255, 0.8);
-  border: 1px solid var(--border);
-  border-radius: 12px;
+/* KWALITEITSGARANTIE HERO BANNER */
+
+.quality-guarantee {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 22px;
+  padding: 14px 16px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1.5px solid var(--lavender);
+  border-left: 4px solid var(--mint);
+  border-radius: 14px;
+  box-shadow: 0 8px 22px rgba(88, 48, 185, 0.08);
   font-size: 13px;
-  color: var(--muted);
+  line-height: 1.55;
+  color: var(--text);
 }
 
-.social-proof strong {
-  color: var(--text);
+.quality-guarantee-icon {
+  font-size: 20px;
+  line-height: 1.2;
+  flex-shrink: 0;
+}
+
+.quality-guarantee strong {
+  color: var(--purple-dark);
 }
 
 /* HERO KAARTEN */
 
 .hero-decoration {
-  width: 380px;
+  width: 400px;
   display: flex;
   flex-direction: column;
   gap: 18px;
@@ -367,6 +380,18 @@ a {
   font-size: 12px;
 }
 
+.hero-mini-badge {
+  display: inline-block;
+  margin-top: 5px;
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #065f46;
+  background: var(--soft-mint);
+  border: 1px solid #a7f3d0;
+  padding: 2px 7px;
+  border-radius: 6px;
+}
+
 .document-price {
   margin-left: auto;
   background: var(--soft-mint);
@@ -375,10 +400,50 @@ a {
   border-radius: 8px;
   font-weight: 800;
   font-size: 14px;
+  white-space: nowrap;
 }
 
 @keyframes float {
   50% { transform: translateY(-8px); }
+}
+
+/* =========================================
+   KWALITEITSBADGES (UI)
+========================================= */
+
+.quality-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--soft-mint);
+  color: #065f46;
+  border: 1px solid #a7f3d0;
+  border-radius: 8px;
+  padding: 5px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.marketplace-badge {
+  margin-top: 12px;
+  font-size: 12px;
+  padding: 6px 12px;
+}
+
+.modal-quality-badge {
+  margin-bottom: 14px;
+  font-size: 12px;
+  padding: 7px 12px;
+}
+
+.card-quality-badge {
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.card-quality-badge .badge-compact {
+  display: none;
 }
 
 /* =========================================
@@ -647,7 +712,7 @@ main {
   color: var(--muted);
   font-size: 13px;
   line-height: 1.65;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
   flex-grow: 1;
 }
 
@@ -841,7 +906,7 @@ main {
 }
 
 /* =========================================
-   MODALS & FORMULIEREN
+   MODALS, AI-CHECK & REVIEWS
 ========================================= */
 
 .modal {
@@ -851,9 +916,9 @@ main {
   background: rgba(26, 14, 52, 0.68);
   backdrop-filter: blur(8px);
   z-index: 1000;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  padding: 20px;
+  padding: 28px 16px;
   overflow-y: auto;
 }
 
@@ -862,12 +927,16 @@ main {
   background: var(--white);
   width: 100%;
   max-width: 490px;
-  padding: 36px;
+  padding: 34px;
   border: 1px solid var(--border);
   border-radius: 22px;
   box-shadow: 0 25px 70px rgba(20, 10, 45, 0.30);
   margin: auto;
   animation: modalIn 0.25s ease;
+}
+
+.modal-content.modal-large {
+  max-width: 580px;
 }
 
 @keyframes modalIn {
@@ -892,7 +961,7 @@ main {
 .modal-content > p {
   color: var(--muted);
   font-size: 13px;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 .close {
@@ -914,61 +983,80 @@ main {
   background: var(--lavender);
 }
 
-#sell-form,
 #sellForm,
-#loginForm {
+#loginForm,
+.review-form {
   display: flex;
   flex-direction: column;
 }
 
-#sell-form label,
 #sellForm label,
-#loginForm label {
+#loginForm label,
+.review-form label {
   color: var(--text);
   font-size: 13px;
   font-weight: 700;
-  margin: 13px 0 6px;
+  margin: 12px 0 6px;
 }
 
-#sell-form input,
-#sell-form select,
-#sell-form textarea,
 #sellForm input,
 #sellForm select,
 #sellForm textarea,
-#loginForm input {
+#loginForm input,
+.review-form input,
+.review-form textarea {
   width: 100%;
   background: var(--bg);
   border: 1.5px solid var(--border);
   border-radius: 11px;
-  padding: 12px;
+  padding: 11px 12px;
   outline: none;
   font-size: 14px;
   color: var(--text);
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-#sell-form input:focus,
-#sell-form select:focus,
-#sell-form textarea:focus,
 #sellForm input:focus,
 #sellForm select:focus,
 #sellForm textarea:focus,
-#loginForm input:focus {
+#loginForm input:focus,
+.review-form input:focus,
+.review-form textarea:focus {
   border-color: var(--purple);
   background: var(--white);
   box-shadow: 0 0 0 4px rgba(121, 80, 232, 0.14);
 }
 
-#sell-form textarea,
 #sellForm textarea {
   min-height: 85px;
   resize: vertical;
 }
 
+.review-form textarea {
+  min-height: 70px;
+  resize: vertical;
+}
+
+.ai-check-box {
+  margin-top: 16px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: var(--soft-indigo);
+  border: 1.5px solid #c7d2fe;
+  color: var(--indigo);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.ai-check-box.success {
+  background: var(--soft-mint);
+  border-color: #a7f3d0;
+  color: #065f46;
+}
+
 .submit-btn {
   width: 100%;
-  margin-top: 22px;
+  margin-top: 20px;
 }
 
 .login-register {
@@ -997,6 +1085,138 @@ main {
   border: 1.5px solid var(--border);
   border-radius: 14px;
   padding: 16px 18px;
+}
+
+/* REVIEWS SECTIE IN PRODUCT MODAL */
+
+.reviews-section {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1.5px solid var(--border);
+}
+
+.reviews-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.reviews-header h3 {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.reviews-summary {
+  background: var(--light-purple);
+  color: var(--purple-dark);
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 210px;
+  overflow-y: auto;
+  margin-bottom: 18px;
+  padding-right: 4px;
+}
+
+.review-item {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+
+.review-item-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.review-item-top strong {
+  font-size: 13px;
+  color: var(--text);
+}
+
+.review-stars {
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+.review-item p {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 0 0 4px;
+  line-height: 1.5;
+}
+
+.review-item small {
+  font-size: 11px;
+  color: #9387ad;
+}
+
+.review-form {
+  background: #fcfaff;
+  border: 1.5px solid var(--lavender);
+  border-radius: 14px;
+  padding: 16px;
+}
+
+.review-form h4 {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--purple-dark);
+  margin-bottom: 8px;
+}
+
+.star-picker {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 4px;
+}
+
+.star-btn {
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  padding: 4px 8px;
+  font-size: 15px;
+  opacity: 0.45;
+  transition: transform 0.15s ease, opacity 0.15s ease, border-color 0.15s ease;
+}
+
+.star-btn.active {
+  opacity: 1;
+  border-color: var(--amber);
+  background: #fffbeb;
+}
+
+.star-btn:hover {
+  transform: scale(1.1);
+}
+
+.star-label {
+  margin-left: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.review-submit-btn {
+  margin-top: 14px;
+  width: 100%;
 }
 
 /* =========================================
@@ -1083,7 +1303,7 @@ main {
   }
 
   .hero-decoration {
-    width: 320px;
+    width: 340px;
   }
 
   .categories-grid,
@@ -1191,6 +1411,15 @@ main {
     font-size: 36px;
   }
 
+  /* Compacte badge op smalle telefoonschermen */
+  .card-quality-badge .badge-full {
+    display: none;
+  }
+
+  .card-quality-badge .badge-compact {
+    display: inline;
+  }
+
   .sell-section {
     flex-direction: column;
     align-items: flex-start;
@@ -1217,7 +1446,7 @@ main {
   }
 
   .modal-content {
-    padding: 30px 21px;
+    padding: 26px 18px;
   }
 }
 
