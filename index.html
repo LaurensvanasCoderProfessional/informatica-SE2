@@ -58,8 +58,11 @@
             <span>✓ Deel jouw kennis</span>
         </div>
 
-        <div class="social-proof">
-            ⭐⭐⭐⭐⭐ <strong>4.8/5</strong> beoordeeld door meer dan <strong>10.000+</strong> actieve studenten.
+        <div class="quality-guarantee" role="note">
+            <span class="quality-guarantee-icon" aria-hidden="true">🛡️</span>
+            <p>
+                <strong>100% Kwaliteitsgarantie:</strong> Elke samenvatting is AI-gecontroleerd vóór publicatie &amp; beoordeeld met 5 sterren door studenten.
+            </p>
         </div>
     </div>
 
@@ -69,6 +72,7 @@
             <div>
                 <strong>Biologie samenvatting</strong>
                 <p>Havo 4 · Biologie</p>
+                <span class="hero-mini-badge">🛡️ AI-gecontroleerd ⭐⭐⭐⭐⭐</span>
             </div>
             <span class="document-price">€ 3,99</span>
         </div>
@@ -77,6 +81,7 @@
             <div>
                 <strong>Wiskunde B Formuleblad</strong>
                 <p>VWO 5 · Wiskunde B</p>
+                <span class="hero-mini-badge">🛡️ AI-gecontroleerd ⭐⭐⭐⭐⭐</span>
             </div>
             <span class="document-price">€ 4,50</span>
         </div>
@@ -220,6 +225,9 @@
             <span class="section-label">DE STUDYSWAP MARKTPLAATS</span>
             <h2>Ontdek jouw volgende samenvatting 💜</h2>
             <p>Filter op vak of zoek direct op onderwerp, niveau of verkoper.</p>
+            <div class="quality-badge marketplace-badge">
+                🛡️ AI-gecontroleerd &amp; Studenten-rated ⭐⭐⭐⭐⭐
+            </div>
         </div>
         <div class="search-wrapper">
             <label for="searchInput" class="visually-hidden">Zoek samenvattingen</label>
@@ -321,10 +329,10 @@
                 </div>
             </div>
             <div class="sell-benefit">
-                <span>🚀</span>
+                <span>🛡️</span>
                 <div>
-                    <strong>Eenvoudig beginnen</strong>
-                    <p>Upload je PDF en zet hem direct online.</p>
+                    <strong>Automatische AI-check</strong>
+                    <p>Jouw PDF wordt direct gecontroleerd en krijgt een keurmerk.</p>
                 </div>
             </div>
         </div>
@@ -338,7 +346,7 @@
         <div class="sell-illustration">
             <span>📄</span>
             <strong>Jouw samenvatting</strong>
-            <span class="sell-coin">💜 € € €</span>
+            <span class="sell-coin">🛡️ AI-gecontroleerd · € € €</span>
         </div>
     </div>
 </section>
@@ -353,7 +361,7 @@
         <button class="close" onclick="closeSell()" type="button" aria-label="Verkoopvenster sluiten">✕</button>
         <span class="tag">SAMENVATTING PLAATSEN 💜</span>
         <h2 id="sellTitle">Verkoop jouw samenvatting</h2>
-        <p>Vul de gegevens hieronder in. Jouw samenvatting staat direct op de marktplaats!</p>
+        <p>Elke upload wordt vóór publicatie automatisch door onze AI gecontroleerd op structuur, leesbaarheid en vakrelevantie.</p>
 
         <form id="sellForm">
             <label for="productName">Titel van de samenvatting</label>
@@ -402,21 +410,28 @@
             <label for="productFile">PDF-bestand (max. 10 MB)</label>
             <input type="file" id="productFile" name="productFile" accept=".pdf,application/pdf" required>
 
-            <button type="submit" class="primary-btn submit-btn">Plaats op StudySwap →</button>
+            <div class="ai-check-box" id="aiCheckStatus" style="display: none;" role="status" aria-live="polite"></div>
+
+            <button type="submit" class="primary-btn submit-btn" id="sellSubmitBtn">Controleer met AI &amp; plaats →</button>
         </form>
     </div>
 </div>
 
 <!-- =====================================
-     PRODUCT DETAIL / KOPEN MODAL (#productModal)
+     PRODUCT DETAIL, KOPEN & REVIEWS MODAL (#productModal)
 ===================================== -->
 <div class="modal" id="productModal" role="dialog" aria-modal="true" aria-labelledby="detailTitle">
-    <div class="modal-content">
+    <div class="modal-content modal-large">
         <button class="close" onclick="closeProductModal()" type="button" aria-label="Productvenster sluiten">✕</button>
         <span class="tag" id="detailCategory">VAK</span>
         <h2 id="detailTitle">Productnaam</h2>
-        <p id="detailMeta" style="font-weight: 600; color: var(--purple-dark); margin-bottom: 12px;">Niveau · Verkoper</p>
-        <p id="detailDescription" style="margin-bottom: 20px;">Beschrijving van de samenvatting.</p>
+        <p id="detailMeta" style="font-weight: 600; color: var(--purple-dark); margin-bottom: 10px;">Niveau · Verkoper</p>
+
+        <div class="quality-badge modal-quality-badge" id="detailQualityBadge">
+            🛡️ AI-gecontroleerd &amp; Studenten-rated ⭐⭐⭐⭐⭐
+        </div>
+
+        <p id="detailDescription" style="margin-bottom: 18px;">Beschrijving van de samenvatting.</p>
 
         <div class="product-detail-box">
             <div>
@@ -424,6 +439,40 @@
                 <strong id="detailPrice" style="font-size: 24px; color: var(--purple-dark);">€ 0,00</strong>
             </div>
             <button type="button" class="primary-btn" id="confirmBuyBtn">Nu kopen &amp; downloaden →</button>
+        </div>
+
+        <!-- REVIEWS PER SAMENVATTING -->
+        <div class="reviews-section" id="reviewsSection">
+            <div class="reviews-header">
+                <h3>Beoordelingen van studenten</h3>
+                <span class="reviews-summary" id="detailRatingSummary">⭐ 5,0 (0 reviews)</span>
+            </div>
+
+            <div class="reviews-list" id="reviewsList">
+                <!-- Gevuld door app.js -->
+            </div>
+
+            <form class="review-form" id="reviewForm">
+                <h4>Schrijf zelf een beoordeling</h4>
+
+                <div class="star-picker" id="starPicker" role="group" aria-label="Kies aantal sterren">
+                    <button type="button" class="star-btn active" data-value="1" aria-label="1 ster">⭐</button>
+                    <button type="button" class="star-btn active" data-value="2" aria-label="2 sterren">⭐</button>
+                    <button type="button" class="star-btn active" data-value="3" aria-label="3 sterren">⭐</button>
+                    <button type="button" class="star-btn active" data-value="4" aria-label="4 sterren">⭐</button>
+                    <button type="button" class="star-btn active" data-value="5" aria-label="5 sterren">⭐</button>
+                    <span class="star-label" id="starRatingText">5 van 5 sterren</span>
+                </div>
+                <input type="hidden" id="reviewRatingInput" value="5">
+
+                <label for="reviewAuthor">Jouw naam</label>
+                <input type="text" id="reviewAuthor" placeholder="Bijv. Lisa (VWO 5)" required>
+
+                <label for="reviewComment">Jouw ervaring met deze samenvatting</label>
+                <textarea id="reviewComment" placeholder="Was de uitleg duidelijk? Heb je een goed cijfer gehaald?" required></textarea>
+
+                <button type="submit" class="secondary-btn review-submit-btn">Beoordeling plaatsen →</button>
+            </form>
         </div>
     </div>
 </div>
