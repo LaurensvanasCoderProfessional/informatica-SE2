@@ -9,12 +9,13 @@ console.assert(typeof openLogin === "function", "❌ Loginfunctie bestaat niet")
 console.assert(typeof buyProduct === "function", "❌ Koopfunctie bestaat niet");
 console.assert(typeof saveProducts === "function", "❌ Opslagfunctie bestaat niet");
 console.assert(typeof loadProducts === "function", "❌ Laadfunctie bestaat niet");
+console.assert(typeof renderReviews === "function", "❌ Reviewweergave bestaat niet");
 
 // 2. CONTROLEREN OF PRODUCTEN BESTAAN
 console.assert(Array.isArray(products), "❌ Producten moeten een array zijn");
 console.assert(products.length > 0, "❌ Er zijn geen producten beschikbaar");
 
-// 3. CONTROLEREN OF PRODUCTGEGEVENS GELDIG ZIJN
+// 3. CONTROLEREN OF PRODUCTGEGEVENS & REVIEWS GELDIG ZIJN
 products.forEach((product, index) => {
     console.assert(
         (product.name || product.naam) && typeof (product.name || product.naam) === "string",
@@ -28,6 +29,10 @@ products.forEach((product, index) => {
         product.category || product.vak,
         `❌ Product ${index + 1} heeft geen categorie`
     );
+    console.assert(
+        Array.isArray(product.reviews),
+        `❌ Product ${index + 1} heeft geen geldige reviews-lijst`
+    );
 });
 
 // 4. CONTROLEREN OF HTML-ELEMENTEN BESTAAN
@@ -35,8 +40,9 @@ console.assert(document.getElementById("productGrid"), "❌ Productenoverzicht o
 console.assert(document.getElementById("sellForm"), "❌ Verkoopformulier ontbreekt (#sellForm)");
 console.assert(document.getElementById("searchInput"), "❌ Zoekbalk ontbreekt (#searchInput)");
 console.assert(document.getElementById("loginModal"), "❌ Loginvenster ontbreekt (#loginModal)");
+console.assert(document.getElementById("reviewForm"), "❌ Reviewformulier ontbreekt (#reviewForm)");
 
-// 5. EXTRA KWALITEITSCONTROLES (Chef Kwaliteit)
+// 5. EXTRA KWALITEITSCONTROLES
 products.forEach((product, index) => {
     console.assert(
         typeof (product.description || product.beschrijving) === "string" &&
