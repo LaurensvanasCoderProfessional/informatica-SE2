@@ -1,12 +1,8 @@
 /* =========================================
    STUDYSWAP - APP.JS
-   Complete marketplace functionaliteit,
-   automatische PDF-controle & reviewsysteem
+   Stabiele basisversie met 18 voorbeeldsamenvattingen,
+   zoeken, filteren, reviews, verkopen & downloaden
    ========================================= */
-
-/* =========================================
-1. STANDAARD PRODUCTEN (Voor alle 18 vakken)
-========================================= */
 
 const subjectIcons = {
     Nederlands: "📚",
@@ -290,8 +286,19 @@ let currentUser = null;
 let activeProductId = null;
 
 /* =========================================
-2. PRODUCTEN LADEN, OPSLAAN & RATING HELPERS
-========================================= */
+   HELPERS: OPSLAG, PRIJS & RATINGS
+   ========================================= */
+
+function formatPrice(value) {
+    const num = Number(String(value ?? 0).replace(",", ".")) || 0;
+    return "€ " + num.toFixed(2).replace(".", ",");
+}
+
+function escapeHtml(text) {
+    const div = document.createElement("div");
+    div.textContent = String(text ?? "");
+    return div.innerHTML;
+}
 
 function getProductRatingStats(product) {
     const reviews = Array.isArray(product.reviews) ? product.reviews : [];
@@ -308,10 +315,8 @@ function getProductRatingStats(product) {
 function loadProducts() {
     try {
         const saved = localStorage.getItem("studyswap-products");
-
         if (saved !== null) {
             const parsed = JSON.parse(saved);
-
             if (Array.isArray(parsed) && parsed.length > 0) {
                 products = parsed.map(item => ({
                     ...item,
@@ -331,4 +336,388 @@ function saveProducts() {
         return true;
     } catch (error) {
         console.error("StudySwap: Opslaan mislukt.", error);
-        alert("Opslaan is niet gelukt. Controleer de beschikbare ops
+        alert("Opslaan is niet gelukt. Controleer de opslagruimte van je browser.");
+        return false;
+    }
+}
+
+/* =========================================
+   MARKTPLAATS WEERGAVE & FILTEREN
+   ========================================= */
+
+function renderProducts() {
+    const grid = document.getElementById("productGrid");
+    const searchInput = document.getElementById("searchInput");
+    const filterLabel = document.getElementById("activeFilterLabel");
+    if (!grid) return;
+
+    const query = searchInput ? searchInput.value.trim().toLowerCase() : "";
+
+    const filtered = products.filter(product => {
+        const matchesCategory = selectedCategory === "Alles" || product.category === selectedCategory;
+        const matchesQuery =
+            !query ||
+            product.name.toLowerCase().includes(query) ||
+            product.category.toLowerCase().includes(query) ||
+            product.education.toLowerCase().includes(query) ||
+            product.description.toLowerCase().includes(query) ||
+            product.seller.toLowerCase().includes(query);
+
+        return matchesCategory && matchesQuery;
+    });
+
+    if (filterLabel) {
+        if (selectedCategory === "Alles" && !query) {
+            filterLabel.textContent = `Alle ${filtered.length} beschikbare samenvattingen worden weergegeven.`;
+        } else {
+            filterLabel.textContent = `${filtered.length} resultaat/resultaten gevonden${selectedCategory !== "Alles" ? ` voor ${selectedCategory}` : ""}.`;
+        }
+    }
+
+    if (filtered.length === 0) {
+        grid.innerHTML = `
+            <div class="empty-message">
+                Geen samenvattingen gevonden voor deze zoekopdracht. Klik op "Alle vakken tonen" om het volledige aanbod te bekijken.
+            </div>
+        `;
+        return;
+    }
+
+    grid.innerHTML = filtered.map(product => {
+        const stats = getProductRatingStats(product);
+        const avgText = stats.average.toFixed(1).replace(".", ",");
+        const icon = product.icon || subjectIcons[product.category] || "📄";
+
+        return `
+            <article class="product-card">
+                <div class="product-icon" aria-hidden="true">${icon}</div>
+                <span class="tag">${escapeHtml(product.category)} · ${escapeHtml(product.education)}</span>
+                <h3>${escapeHtml(product.name)}</h3>
+                <p>${escapeHtml(product.description)}</p>
+                <div class="quality-badge card-quality-badge">
+                    🛡️ Gecontroleerd · ⭐ ${avgText} (${stats.count})
+                </div>
+                <small>Gemaakt door ${escapeHtml(product.seller)}</small>
+                <div class="product-bottom">
+                    <strong>${formatPrice(product.price)}</strong>
+                    <button type="button" onclick="openProductModal(${product.id})">Bekijken &amp; kopen</button>
+                </div>
+            </article>
+        `;
+    }).join("");
+}
+
+function filterCategory(category) {
+    selectedCategory = category;
+
+    document.querySelectorAll(".category-card[data-category]").forEach(card => {
+        card.classList.toggle("active", card.dataset.category === category);
+    });
+
+    renderProducts();
+
+    const section = document.getElementById("ontdekken");
+    if (section && category !== "Alles") {
+        section.scrollIntoView({ behavior: "smooth" });
+    }
+}
+
+/* =========================================
+   PRODUCT DETAIL, KOPEN & DOWNLOADEN
+   ========================================= */
+
+function openProductModal(productId) {
+    const product = products.find(p => p.id === productId);
+    const modal = document.getElementById("productModal");
+    if (!product || !modal) return;
+
+    activeProductId = product.id;
+
+    document.getElementById("detailCategory").textContent = product.category.toUpperCase();
+    document.getElementById("detailTitle").textContent = product.name;
+    document.getElementById("detailMeta").textContent = `${product.education} · Verkoper: ${product.seller}`;
+    document.getElementById("detailDescription").textContent = product.description;
+    document.getElementById("detailPrice").textContent = formatPrice(product.price);
+
+    const buyBtn = document.getElementById("confirmBuyBtn");
+    buyBtn.onclick = () => buyProduct(product.id);
+
+    renderReviews(product.id);
+    modal.style.display = "flex";
+}
+
+function closeProductModal() {
+    const modal = document.getElementById("productModal");
+    if (modal) modal.style.display = "none";
+    activeProductId = null;
+}
+
+function buyProduct(productId) {
+    const product = products.find(p => p.id === productId);
+    if (!product) return;
+
+    const inhoud = [
+        "=========================================",
+        `STUDYSWAP SAMENVATTING: ${product.name}`,
+        `Vak: ${product.category} | Niveau: ${product.education}`,
+        `Auteur: ${product.seller} | Prijs: ${formatPrice(product.price)}`,
+        "=========================================",
+        "",
+        "OVERZICHT VAN DE LEERSTOF:",
+        product.description,
+        "",
+        "BELANGRIJKSTE PUNTEN OM TE LEREN:",
+        "1. Lees eerst de kernbegrippen van dit hoofdstuk goed door.",
+        "2. Oefen met de voorbeeldopgaven en controleer je uitwerkingen.",
+        "3. Herhaal de samenvatting één dag voor je toets.",
+        "",
+        "Veel succes met leren! - Team StudySwap"
+    ].join("\n");
+
+    const blob = new Blob([inhoud], { type: "text/plain;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `${product.name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}.txt`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+
+    alert(`Bedankt voor je aankoop van "${product.name}" (${formatPrice(product.price)})! Je samenvatting wordt nu gedownload.`);
+}
+
+/* =========================================
+   REVIEWS SYSTEEM
+   ========================================= */
+
+function renderReviews(productId) {
+    const product = products.find(p => p.id === productId);
+    const list = document.getElementById("reviewsList");
+    const summary = document.getElementById("detailRatingSummary");
+    if (!product || !list) return;
+
+    const stats = getProductRatingStats(product);
+    if (summary) {
+        summary.textContent = `⭐ ${stats.average.toFixed(1).replace(".", ",")} (${stats.count} ${stats.count === 1 ? "review" : "reviews"})`;
+    }
+
+    if (!product.reviews || product.reviews.length === 0) {
+        list.innerHTML = `<p style="color: var(--muted); font-size: 13px;">Nog geen beoordelingen. Wees de eerste die een review schrijft!</p>`;
+        return;
+    }
+
+    list.innerHTML = product.reviews.map(review => {
+        const stars = "⭐".repeat(Math.max(1, Math.min(5, Number(review.rating) || 5)));
+        return `
+            <div class="review-item">
+                <div class="review-item-top">
+                    <strong>${escapeHtml(review.author)}</strong>
+                    <span class="review-stars">${stars}</span>
+                </div>
+                <p>${escapeHtml(review.comment)}</p>
+                <small>${escapeHtml(review.date || "Recent")}</small>
+            </div>
+        `;
+    }).join("");
+}
+
+function setupReviewForm() {
+    const starButtons = document.querySelectorAll("#starPicker .star-btn");
+    const ratingInput = document.getElementById("reviewRatingInput");
+    const ratingText = document.getElementById("starRatingText");
+    const reviewForm = document.getElementById("reviewForm");
+
+    starButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            const val = Number(btn.dataset.value) || 5;
+            if (ratingInput) ratingInput.value = String(val);
+            if (ratingText) ratingText.textContent = `${val} van 5 sterren`;
+
+            starButtons.forEach(b => {
+                b.classList.toggle("active", Number(b.dataset.value) <= val);
+            });
+        });
+    });
+
+    if (reviewForm) {
+        reviewForm.addEventListener("submit", event => {
+            event.preventDefault();
+            if (activeProductId === null) return;
+
+            const product = products.find(p => p.id === activeProductId);
+            if (!product) return;
+
+            const author = document.getElementById("reviewAuthor").value.trim();
+            const comment = document.getElementById("reviewComment").value.trim();
+            const rating = Number(ratingInput ? ratingInput.value : 5) || 5;
+
+            if (!author || !comment) return;
+
+            const today = new Date().toLocaleDateString("nl-NL", {
+                day: "numeric",
+                month: "short",
+                year: "numeric"
+            });
+
+            product.reviews.unshift({
+                author,
+                rating,
+                comment,
+                date: today
+            });
+
+            saveProducts();
+            renderReviews(product.id);
+            renderProducts();
+            reviewForm.reset();
+            if (ratingInput) ratingInput.value = "5";
+            if (ratingText) ratingText.textContent = "5 van 5 sterren";
+            starButtons.forEach(b => b.classList.add("active"));
+        });
+    }
+}
+
+/* =========================================
+   VERKOPEN & NIEUWE SAMENVATTING PLAATSEN
+   ========================================= */
+
+function openSell() {
+    const modal = document.getElementById("sellModal");
+    if (!modal) return;
+
+    const sellerInput = document.getElementById("productSeller");
+    if (sellerInput && currentUser && !sellerInput.value) {
+        sellerInput.value = currentUser.name;
+    }
+
+    modal.style.display = "flex";
+}
+
+function closeSell() {
+    const modal = document.getElementById("sellModal");
+    if (modal) modal.style.display = "none";
+}
+
+function setupSellForm() {
+    const sellForm = document.getElementById("sellForm");
+    if (!sellForm) return;
+
+    sellForm.addEventListener("submit", event => {
+        event.preventDefault();
+
+        const name = document.getElementById("productName").value.trim();
+        const category = document.getElementById("productSubject").value;
+        const education = document.getElementById("productEducation").value.trim();
+        const description = document.getElementById("productDescription").value.trim();
+        const price = parseFloat(document.getElementById("productPrice").value);
+        const sellerField = document.getElementById("productSeller").value.trim();
+        const seller = sellerField || (currentUser ? currentUser.name : "Leerling");
+
+        if (!name || !category || !education || !description || isNaN(price) || price <= 0) {
+            alert("Vul alle verplichte velden goed in.");
+            return;
+        }
+
+        const newId = products.length > 0 ? Math.max(...products.map(p => Number(p.id) || 0)) + 1 : 1;
+
+        const newProduct = {
+            id: newId,
+            name,
+            category,
+            education,
+            description,
+            price,
+            seller,
+            icon: subjectIcons[category] || "📄",
+            aiVerified: true,
+            reviews: []
+        };
+
+        products.unshift(newProduct);
+        saveProducts();
+        selectedCategory = "Alles";
+        renderProducts();
+        sellForm.reset();
+        closeSell();
+
+        alert(`Gelukt! "${name}" staat nu online in de StudySwap marktplaats.`);
+    });
+}
+
+/* =========================================
+   INLOGGEN
+   ========================================= */
+
+function openLogin() {
+    const modal = document.getElementById("loginModal");
+    if (modal) modal.style.display = "flex";
+}
+
+function closeLogin() {
+    const modal = document.getElementById("loginModal");
+    if (modal) modal.style.display = "none";
+}
+
+function setupLoginForm() {
+    const loginForm = document.getElementById("loginForm");
+    const navLoginBtn = document.getElementById("navLoginBtn");
+    const statusText = document.getElementById("loginStatusText");
+    if (!loginForm) return;
+
+    try {
+        const savedUser = localStorage.getItem("studyswap-user");
+        if (savedUser) {
+            currentUser = JSON.parse(savedUser);
+            if (navLoginBtn && currentUser.name) {
+                navLoginBtn.textContent = `👤 ${currentUser.name}`;
+            }
+        }
+    } catch (e) {
+        currentUser = null;
+    }
+
+    loginForm.addEventListener("submit", event => {
+        event.preventDefault();
+
+        const name = document.getElementById("loginName").value.trim();
+        const email = document.getElementById("loginEmail").value.trim();
+
+        if (!name || !email) return;
+
+        currentUser = { name, email };
+        localStorage.setItem("studyswap-user", JSON.stringify(currentUser));
+
+        if (navLoginBtn) {
+            navLoginBtn.textContent = `👤 ${name}`;
+        }
+        if (statusText) {
+            statusText.textContent = `Ingelogd als ${name} (${email}).`;
+        }
+
+        closeLogin();
+    });
+}
+
+/* =========================================
+   INITIALISATIE BIJ LADEN VAN DE PAGINA
+   ========================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+    loadProducts();
+    renderProducts();
+    setupSellForm();
+    setupReviewForm();
+    setupLoginForm();
+
+    const searchInput = document.getElementById("searchInput");
+    if (searchInput) {
+        searchInput.addEventListener("input", renderProducts);
+    }
+
+    window.addEventListener("click", event => {
+        if (event.target === document.getElementById("sellModal")) closeSell();
+        if (event.target === document.getElementById("productModal")) closeProductModal();
+        if (event.target === document.getElementById("loginModal")) closeLogin();
+    });
+});
