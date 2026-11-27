@@ -6,14 +6,10 @@
     <title>StudySwap | Slimmer studeren, samen verder</title>
     <meta name="description" content="Ontdek, koop en verkoop samenvattingen op StudySwap. Deel je kennis en help andere leerlingen slimmer studeren.">
     <meta name="theme-color" content="#7950e8">
-    <meta name="color-scheme" content="light">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- =====================================
-     NAVIGATIE
-===================================== -->
 <header class="navbar">
     <a href="#home" class="logo" aria-label="StudySwap - Home">
         <span class="logo-icon" aria-hidden="true">S</span>
@@ -30,21 +26,14 @@
     </nav>
 
     <div class="navbar-actions">
-        <button class="login-btn" id="navLoginBtn" type="button" onclick="openLogin()" aria-label="Inloggen op StudySwap">
-            Inloggen
-        </button>
+        <button class="login-btn" id="navLoginBtn" type="button" onclick="openLogin()">Inloggen</button>
     </div>
 </header>
 
-<!-- =====================================
-     HERO - STARTPAGINA
-===================================== -->
 <section class="hero" id="home" aria-labelledby="hero-title">
     <div class="hero-content">
         <span class="tag">✨ HET PLATFORM VOOR SLIMMER STUDEREN</span>
-
         <h1 id="hero-title">Samen slimmer. <span>Samen succesvoller.</span></h1>
-
         <p>Vind handige samenvattingen van andere leerlingen, bespaar tijd tijdens het studeren en verdien geld met jouw eigen studiemateriaal.</p>
 
         <div class="hero-buttons">
@@ -55,33 +44,31 @@
         <div class="hero-benefits">
             <span>✓ Eenvoudig zoeken</span>
             <span>✓ Gemaakt door leerlingen</span>
-            <span>✓ Deel jouw kennis</span>
+            <span>✓ Direct downloaden</span>
         </div>
 
         <div class="quality-guarantee" role="note">
             <span class="quality-guarantee-icon" aria-hidden="true">🛡️</span>
-            <p>
-                <strong>100% Kwaliteitsgarantie:</strong> Elke samenvatting is AI-gecontroleerd vóór publicatie &amp; beoordeeld met 5 sterren door studenten.
-            </p>
+            <p><strong>Kwaliteitsgarantie:</strong> Elke samenvatting wordt gecontroleerd vóór publicatie &amp; beoordeeld door studenten.</p>
         </div>
     </div>
 
     <div class="hero-decoration" aria-label="Voorbeelden van samenvattingen">
-        <div class="hero-card" onclick="filterCategory('Biologie')" style="cursor: pointer;">
+        <div class="hero-card" onclick="openProductModal(1)" style="cursor: pointer;">
             <div class="document-icon" aria-hidden="true">PDF</div>
             <div>
                 <strong>Biologie samenvatting</strong>
                 <p>Havo 4 · Biologie</p>
-                <span class="hero-mini-badge">🛡️ AI-gecontroleerd ⭐⭐⭐⭐⭐</span>
+                <span class="hero-mini-badge">🛡️ Gecontroleerd · ⭐ 5,0</span>
             </div>
             <span class="document-price">€ 3,99</span>
         </div>
-        <div class="hero-card second-card" onclick="filterCategory('Wiskunde B')" style="cursor: pointer;">
+        <div class="hero-card second-card" onclick="openProductModal(2)" style="cursor: pointer;">
             <div class="document-icon purple-icon" aria-hidden="true">PDF</div>
             <div>
                 <strong>Wiskunde B Formuleblad</strong>
                 <p>VWO 5 · Wiskunde B</p>
-                <span class="hero-mini-badge">🛡️ AI-gecontroleerd ⭐⭐⭐⭐⭐</span>
+                <span class="hero-mini-badge">🛡️ Gecontroleerd · ⭐ 5,0</span>
             </div>
             <span class="document-price">€ 4,50</span>
         </div>
@@ -89,259 +76,213 @@
 </section>
 
 <main>
+    <section class="about-section" id="wat-is-het" style="text-align: center;">
+        <div class="section-heading" style="max-width: 800px; margin: 0 auto;">
+            <span class="section-tag">WAT IS STUDYSWAP?</span>
+            <h2>Jouw digitale kluis voor betere cijfers</h2>
+            <p>StudySwap is dé marktplaats waar scholieren studiemateriaal uitwisselen. Verdien iets bij met jouw eigen samenvattingen of vind snel een duidelijke uitleg voor je volgende toets.</p>
+        </div>
+    </section>
 
-<!-- =====================================
-     OVER ONS
-===================================== -->
-<section class="about-section" id="wat-is-het" style="padding: 4rem 2rem; text-align: center;">
-    <div class="section-heading" style="max-width: 800px; margin: 0 auto;">
-        <span class="section-tag">WAT IS STUDYSWAP?</span>
-        <h2>Jouw digitale kluis voor betere cijfers</h2>
-        <p>
-            StudySwap is dé veilige marktplaats waar scholieren en studenten studiemateriaal uitwisselen.
-            Of je nu uren hebt gezwoegd op de perfecte geschiedenissamenvatting en hier iets aan wilt verdienen,
-            of last-minute op zoek bent naar de beste wiskunde-uitleg voor je tentamen: wij brengen vraag en aanbod
-            samen zodat iedereen efficiënter kan leren.
-        </p>
-    </div>
-</section>
-
-<!-- =====================================
-     VAKKENMENU / CATEGORIEËN (18 VAKKEN)
-===================================== -->
-<section class="categories-section" id="categories">
-    <div class="section-heading">
-        <span class="section-tag">VAKKENMENU</span>
-        <h2>Waar ben je naar op zoek?</h2>
-        <p>Kies uit 18 schoolvakken en bekijk direct alle beschikbare samenvattingen.</p>
-    </div>
-    <div class="categories-grid" id="categoryGrid">
-        <!-- Talen -->
-        <button class="category-card" type="button" data-category="Nederlands" onclick="filterCategory('Nederlands')">
-            <span class="category-icon">📚</span>
-            <strong>Nederlands</strong>
-            <span>Taal, stijlfiguren en literatuur</span>
-        </button>
-        <button class="category-card" type="button" data-category="Engels" onclick="filterCategory('Engels')">
-            <span class="category-icon">🌍</span>
-            <strong>Engels</strong>
-            <span>Grammar, idiom en literatuur</span>
-        </button>
-        <button class="category-card" type="button" data-category="Duits" onclick="filterCategory('Duits')">
-            <span class="category-icon">🥨</span>
-            <strong>Duits</strong>
-            <span>Naamvallen, grammatica en woordjes</span>
-        </button>
-        <button class="category-card" type="button" data-category="Frans" onclick="filterCategory('Frans')">
-            <span class="category-icon">🥐</span>
-            <strong>Frans</strong>
-            <span>Werkwoorden, tijden en leesvaardigheid</span>
-        </button>
-        <button class="category-card" type="button" data-category="Spaans" onclick="filterCategory('Spaans')">
-            <span class="category-icon">💃</span>
-            <strong>Spaans</strong>
-            <span>Vocabulaire en werkwoordvervoegingen</span>
-        </button>
-
-        <!-- Exact & Natuur -->
-        <button class="category-card" type="button" data-category="Wiskunde A" onclick="filterCategory('Wiskunde A')">
-            <span class="category-icon">📈</span>
-            <strong>Wiskunde A</strong>
-            <span>Statistiek, kansrekening en grafieken</span>
-        </button>
-        <button class="category-card" type="button" data-category="Wiskunde B" onclick="filterCategory('Wiskunde B')">
-            <span class="category-icon">📐</span>
-            <strong>Wiskunde B</strong>
-            <span>Differentiëren, meetkunde en formules</span>
-        </button>
-        <button class="category-card" type="button" data-category="Natuurkunde" onclick="filterCategory('Natuurkunde')">
-            <span class="category-icon">⚡</span>
-            <strong>Natuurkunde</strong>
-            <span>Krachten, elektriciteit en straling</span>
-        </button>
-        <button class="category-card" type="button" data-category="Scheikunde" onclick="filterCategory('Scheikunde')">
-            <span class="category-icon">🧪</span>
-            <strong>Scheikunde</strong>
-            <span>Reactievergelijkingen, mol en zuren</span>
-        </button>
-        <button class="category-card" type="button" data-category="Biologie" onclick="filterCategory('Biologie')">
-            <span class="category-icon">🧬</span>
-            <strong>Biologie</strong>
-            <span>Cellen, DNA, ecologie en het lichaam</span>
-        </button>
-        <button class="category-card" type="button" data-category="Informatica" onclick="filterCategory('Informatica')">
-            <span class="category-icon">💻</span>
-            <strong>Informatica</strong>
-            <span>Programmeren, databases en netwerken</span>
-        </button>
-
-        <!-- Economie & Maatschappij -->
-        <button class="category-card" type="button" data-category="Economie" onclick="filterCategory('Economie')">
-            <span class="category-icon">📊</span>
-            <strong>Economie</strong>
-            <span>Marktvormen, welvaart en conjunctuur</span>
-        </button>
-        <button class="category-card" type="button" data-category="Bedrijfseconomie" onclick="filterCategory('Bedrijfseconomie')">
-            <span class="category-icon">💼</span>
-            <strong>Bedrijfseconomie</strong>
-            <span>Balans, winst-en-verlies en marketing</span>
-        </button>
-        <button class="category-card" type="button" data-category="Geschiedenis" onclick="filterCategory('Geschiedenis')">
-            <span class="category-icon">🏛️</span>
-            <strong>Geschiedenis</strong>
-            <span>Tijdvakken, oorlogen en wereldpolitiek</span>
-        </button>
-        <button class="category-card" type="button" data-category="Aardrijkskunde" onclick="filterCategory('Aardrijkskunde')">
-            <span class="category-icon">🗺️</span>
-            <strong>Aardrijkskunde</strong>
-            <span>Klimaat, platentektoniek en globalisering</span>
-        </button>
-        <button class="category-card" type="button" data-category="Maatschappijleer" onclick="filterCategory('Maatschappijleer')">
-            <span class="category-icon">⚖️</span>
-            <strong>Maatschappijleer</strong>
-            <span>Rechtsstaat, democratie en pluriformiteit</span>
-        </button>
-        <button class="category-card" type="button" data-category="Filosofie" onclick="filterCategory('Filosofie')">
-            <span class="category-icon">🧠</span>
-            <strong>Filosofie</strong>
-            <span>Ethiek, denkers en kennisleer</span>
-        </button>
-
-        <!-- Cultuur -->
-        <button class="category-card" type="button" data-category="Kunst & CKV" onclick="filterCategory('Kunst & CKV')">
-            <span class="category-icon">🎨</span>
-            <strong>Kunst &amp; CKV</strong>
-            <span>Kunstgeschiedenis, stromingen en analyse</span>
-        </button>
-    </div>
-</section>
-
-<!-- =====================================
-     MARKTPLAATS
-===================================== -->
-<section class="products-section" id="ontdekken">
-    <div class="product-heading">
+    <section class="categories-section" id="categories">
         <div class="section-heading">
-            <span class="section-label">DE STUDYSWAP MARKTPLAATS</span>
-            <h2>Ontdek jouw volgende samenvatting 💜</h2>
-            <p>Kies hierboven een vak of zoek direct op onderwerp, niveau of verkoper.</p>
-            <div class="quality-badge marketplace-badge">
-                🛡️ AI-gecontroleerd &amp; Studenten-rated ⭐⭐⭐⭐⭐
+            <span class="section-tag">VAKKENMENU</span>
+            <h2>Waar ben je naar op zoek?</h2>
+            <p>Kies uit 18 schoolvakken en bekijk direct de beschikbare samenvattingen.</p>
+        </div>
+        <div class="categories-grid" id="categoryGrid">
+            <button class="category-card" type="button" data-category="Nederlands" onclick="filterCategory('Nederlands')">
+                <span class="category-icon">📚</span><strong>Nederlands</strong><span>Taal, stijlfiguren en literatuur</span>
+            </button>
+            <button class="category-card" type="button" data-category="Engels" onclick="filterCategory('Engels')">
+                <span class="category-icon">🌍</span><strong>Engels</strong><span>Grammar, idiom en literatuur</span>
+            </button>
+            <button class="category-card" type="button" data-category="Duits" onclick="filterCategory('Duits')">
+                <span class="category-icon">🥨</span><strong>Duits</strong><span>Naamvallen, grammatica en woordjes</span>
+            </button>
+            <button class="category-card" type="button" data-category="Frans" onclick="filterCategory('Frans')">
+                <span class="category-icon">🥐</span><strong>Frans</strong><span>Werkwoorden, tijden en leesvaardigheid</span>
+            </button>
+            <button class="category-card" type="button" data-category="Spaans" onclick="filterCategory('Spaans')">
+                <span class="category-icon">💃</span><strong>Spaans</strong><span>Vocabulaire en werkwoordvervoegingen</span>
+            </button>
+            <button class="category-card" type="button" data-category="Wiskunde A" onclick="filterCategory('Wiskunde A')">
+                <span class="category-icon">📈</span><strong>Wiskunde A</strong><span>Statistiek, kansrekening en grafieken</span>
+            </button>
+            <button class="category-card" type="button" data-category="Wiskunde B" onclick="filterCategory('Wiskunde B')">
+                <span class="category-icon">📐</span><strong>Wiskunde B</strong><span>Differentiëren, meetkunde en formules</span>
+            </button>
+            <button class="category-card" type="button" data-category="Natuurkunde" onclick="filterCategory('Natuurkunde')">
+                <span class="category-icon">⚡</span><strong>Natuurkunde</strong><span>Krachten, elektriciteit en straling</span>
+            </button>
+            <button class="category-card" type="button" data-category="Scheikunde" onclick="filterCategory('Scheikunde')">
+                <span class="category-icon">🧪</span><strong>Scheikunde</strong><span>Reactievergelijkingen, mol en zuren</span>
+            </button>
+            <button class="category-card" type="button" data-category="Biologie" onclick="filterCategory('Biologie')">
+                <span class="category-icon">🧬</span><strong>Biologie</strong><span>Cellen, DNA, ecologie en het lichaam</span>
+            </button>
+            <button class="category-card" type="button" data-category="Informatica" onclick="filterCategory('Informatica')">
+                <span class="category-icon">💻</span><strong>Informatica</strong><span>Programmeren, databases en netwerken</span>
+            </button>
+            <button class="category-card" type="button" data-category="Economie" onclick="filterCategory('Economie')">
+                <span class="category-icon">📊</span><strong>Economie</strong><span>Marktvormen, welvaart en conjunctuur</span>
+            </button>
+            <button class="category-card" type="button" data-category="Bedrijfseconomie" onclick="filterCategory('Bedrijfseconomie')">
+                <span class="category-icon">💼</span><strong>Bedrijfseconomie</strong><span>Balans, winst-en-verlies en marketing</span>
+            </button>
+            <button class="category-card" type="button" data-category="Geschiedenis" onclick="filterCategory('Geschiedenis')">
+                <span class="category-icon">🏛️</span><strong>Geschiedenis</strong><span>Tijdvakken, oorlogen en wereldpolitiek</span>
+            </button>
+            <button class="category-card" type="button" data-category="Aardrijkskunde" onclick="filterCategory('Aardrijkskunde')">
+                <span class="category-icon">🗺️</span><strong>Aardrijkskunde</strong><span>Klimaat, platentektoniek en globalisering</span>
+            </button>
+            <button class="category-card" type="button" data-category="Maatschappijleer" onclick="filterCategory('Maatschappijleer')">
+                <span class="category-icon">⚖️</span><strong>Maatschappijleer</strong><span>Rechtsstaat, democratie en pluriformiteit</span>
+            </button>
+            <button class="category-card" type="button" data-category="Filosofie" onclick="filterCategory('Filosofie')">
+                <span class="category-icon">🧠</span><strong>Filosofie</strong><span>Ethiek, denkers en kennisleer</span>
+            </button>
+            <button class="category-card" type="button" data-category="Kunst & CKV" onclick="filterCategory('Kunst & CKV')">
+                <span class="category-icon">🎨</span><strong>Kunst &amp; CKV</strong><span>Kunstgeschiedenis, stromingen en analyse</span>
+            </button>
+        </div>
+    </section>
+
+    <section class="products-section" id="ontdekken">
+        <div class="product-heading">
+            <div class="section-heading">
+                <span class="section-label">DE STUDYSWAP MARKTPLAATS</span>
+                <h2>Ontdek jouw volgende samenvatting 💜</h2>
+                <p id="activeFilterLabel">Alle 18 vakken worden weergegeven.</p>
             </div>
-        </div>
-        <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
-            <button type="button" class="secondary-btn" onclick="filterCategory('Alles')">Alle vakken tonen</button>
-            <div class="search-wrapper">
-                <label for="searchInput" class="visually-hidden">Zoek samenvattingen</label>
-                <span aria-hidden="true">⌕</span>
-                <input type="search" id="searchInput" placeholder="Zoek op vak of samenvatting..." autocomplete="off">
-            </div>
-        </div>
-    </div>
-
-    <div class="product-grid" id="productGrid">
-        <!-- Gegenereerd door app.js -->
-    </div>
-</section>
-
-<!-- =====================================
-     VERDIENMODELLEN
-===================================== -->
-<section class="revenue-section" id="verdienmodellen" style="padding: 4rem 2rem;">
-    <div class="section-heading" style="text-align: center; margin-bottom: 3rem;">
-        <span class="section-tag">BUSINESS MODEL</span>
-        <h2>Hoe wij het platform draaiende houden</h2>
-        <p>Transparantie vinden we belangrijk. Dit zijn de 3 manieren waarop StudySwap inkomsten genereert.</p>
-    </div>
-
-    <div class="categories-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
-        <div class="category-card" style="cursor: default;">
-            <span class="category-icon">1️⃣</span>
-            <strong>Commissie per verkoop</strong>
-            <span>
-                Voor elke samenvatting die wordt verkocht, rekenen wij een kleine servicekosten-commissie (15%).
-                De rest van de winst gaat direct naar de leerling die de samenvatting heeft gemaakt.
-            </span>
-        </div>
-
-        <div class="category-card" style="cursor: default;">
-            <span class="category-icon">2️⃣</span>
-            <strong>StudySwap Premium</strong>
-            <span>
-                Een maandelijks abonnement voor grootverbruikers. Voor een vast bedrag per maand kunnen leerlingen
-                onbeperkt samenvattingen downloaden, zonder los af te hoeven rekenen.
-            </span>
-        </div>
-
-        <div class="category-card" style="cursor: default;">
-            <span class="category-icon">3️⃣</span>
-            <strong>Promotie Opties</strong>
-            <span>
-                Verkopers kunnen tegen een kleine eenmalige betaling hun samenvatting een 'boost' geven.
-                Hierdoor verschijnt hun document een week lang bovenaan in de zoekresultaten.
-            </span>
-        </div>
-    </div>
-</section>
-
-<!-- =====================================
-     VERKOOPSECTIE
-===================================== -->
-<section class="sell-section" id="verkopen">
-    <div class="sell-content">
-        <span class="section-label">DEEL JOUW KENNIS</span>
-        <h2>Maak van jouw samenvattingen <span>iets waardevols. 💜</span></h2>
-        <p>Heb jij goede samenvattingen gemaakt? Help andere leerlingen met studeren en verdien tegelijkertijd een leuk zakcentje.</p>
-
-        <div class="sell-benefits">
-            <div class="sell-benefit">
-                <span>📚</span>
-                <div>
-                    <strong>Deel jouw kennis</strong>
-                    <p>Help andere leerlingen met jouw werk.</p>
-                </div>
-            </div>
-            <div class="sell-benefit">
-                <span>💸</span>
-                <div>
-                    <strong>Verdien geld</strong>
-                    <p>Bepaal zelf de prijs van jouw samenvatting.</p>
-                </div>
-            </div>
-            <div class="sell-benefit">
-                <span>🛡️</span>
-                <div>
-                    <strong>Automatische kwaliteitscheck</strong>
-                    <p>Jouw PDF wordt direct gecontroleerd op inhoud en vakrelevantie.</p>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
+                <button type="button" class="secondary-btn" onclick="filterCategory('Alles')">Alle vakken tonen</button>
+                <div class="search-wrapper">
+                    <label for="searchInput" class="visually-hidden">Zoek samenvattingen</label>
+                    <span aria-hidden="true">⌕</span>
+                    <input type="search" id="searchInput" placeholder="Zoek op vak, niveau of titel..." autocomplete="off">
                 </div>
             </div>
         </div>
 
-        <button type="button" class="secondary-btn" onclick="openSell()">
-            + Samenvatting uploaden &amp; verkopen →
-        </button>
-    </div>
+        <div class="product-grid" id="productGrid"></div>
+    </section>
 
-    <div class="sell-visual" aria-hidden="true">
-        <div class="sell-illustration">
-            <span>📄</span>
-            <strong>Jouw samenvatting</strong>
-            <span class="sell-coin">🛡️ AI-gecontroleerd · € € €</span>
+    <section class="revenue-section" id="verdienmodellen">
+        <div class="section-heading" style="text-align: center; margin-bottom: 3rem;">
+            <span class="section-tag">BUSINESS MODEL</span>
+            <h2>Hoe wij het platform draaiende houden</h2>
+            <p>Dit zijn de 3 manieren waarop StudySwap inkomsten genereert.</p>
         </div>
-    </div>
-</section>
 
+        <div class="categories-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+            <div class="category-card" style="cursor: default;">
+                <span class="category-icon">1️⃣</span>
+                <strong>Commissie per verkoop</strong>
+                <span>Voor elke verkochte samenvatting rekenen wij 15% servicekosten. De overige 85% gaat direct naar de maker.</span>
+            </div>
+            <div class="category-card" style="cursor: default;">
+                <span class="category-icon">2️⃣</span>
+                <strong>StudySwap Premium</strong>
+                <span>Een maandelijks abonnement waarmee leerlingen onbeperkt samenvattingen kunnen downloaden voor een vast bedrag.</span>
+            </div>
+            <div class="category-card" style="cursor: default;">
+                <span class="category-icon">3️⃣</span>
+                <strong>Promotie Opties</strong>
+                <span>Verkopers kunnen tegen een kleine eenmalige vergoeding hun samenvatting een week lang bovenaan zetten.</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="sell-section" id="verkopen">
+        <div class="sell-content">
+            <span class="section-label">DEEL JOUW KENNIS</span>
+            <h2>Maak van jouw samenvattingen <span>iets waardevols. 💜</span></h2>
+            <p>Heb jij goede samenvattingen gemaakt? Help andere leerlingen met studeren en verdien tegelijkertijd een leuk zakcentje.</p>
+
+            <div class="sell-benefits">
+                <div class="sell-benefit">
+                    <span>📚</span>
+                    <div>
+                        <strong>Deel jouw kennis</strong>
+                        <p>Help andere leerlingen met jouw aantekeningen.</p>
+                    </div>
+                </div>
+                <div class="sell-benefit">
+                    <span>💸</span>
+                    <div>
+                        <strong>Verdien geld</strong>
+                        <p>Bepaal zelf de prijs van jouw samenvatting.</p>
+                    </div>
+                </div>
+                <div class="sell-benefit">
+                    <span>🛡️</span>
+                    <div>
+                        <strong>Snelle plaatsing</strong>
+                        <p>Upload je bestand en zet hem direct online in de marktplaats.</p>
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" class="secondary-btn" onclick="openSell()">+ Samenvatting uploaden &amp; verkopen →</button>
+        </div>
+
+        <div class="sell-visual" aria-hidden="true">
+            <div class="sell-illustration">
+                <span>📄</span>
+                <strong>Jouw samenvatting</strong>
+                <span class="sell-coin">🛡️ Gecontroleerd · € € €</span>
+            </div>
+        </div>
+    </section>
 </main>
 
-<!-- =====================================
-     VERKOOP MODAL (#sellModal)
-===================================== -->
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-brand">
+            <a href="#home" class="logo">
+                <span class="logo-icon">S</span>
+                <span>StudySwap</span>
+            </a>
+            <p>Het online platform waar scholieren samenvattingen delen, kopen en verkopen om samen betere resultaten te halen.</p>
+        </div>
+
+        <div class="footer-links">
+            <h3>Navigatie</h3>
+            <a href="#home">Home</a>
+            <a href="#wat-is-het">Over ons</a>
+            <a href="#categories">Vakken</a>
+            <a href="#ontdekken">Ontdekken</a>
+        </div>
+
+        <div class="footer-links">
+            <h3>Meedoen</h3>
+            <button type="button" onclick="openSell()">Samenvatting verkopen</button>
+            <button type="button" onclick="openLogin()">Inloggen / Account</button>
+            <a href="#verdienmodellen">Verdienmodellen</a>
+        </div>
+
+        <div class="footer-links">
+            <h3>Populaire vakken</h3>
+            <button type="button" onclick="filterCategory('Biologie')">Biologie</button>
+            <button type="button" onclick="filterCategory('Wiskunde B')">Wiskunde B</button>
+            <button type="button" onclick="filterCategory('Geschiedenis')">Geschiedenis</button>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>© 2026 StudySwap. Alle rechten voorbehouden.</p>
+        <p>Gemaakt voor &amp; door scholieren 💜</p>
+    </div>
+</footer>
+
+<!-- VERKOOP MODAL -->
 <div class="modal" id="sellModal" role="dialog" aria-modal="true" aria-labelledby="sellTitle">
     <div class="modal-content">
         <button class="close" onclick="closeSell()" type="button" aria-label="Verkoopvenster sluiten">✕</button>
         <span class="tag">SAMENVATTING PLAATSEN 💜</span>
         <h2 id="sellTitle">Verkoop jouw samenvatting</h2>
-        <p>Elke upload wordt vóór publicatie automatisch gecontroleerd op woordenaantal, leesbaarheid en vakrelevantie.</p>
+        <p>Vul de gegevens hieronder in om jouw samenvatting direct toe te voegen aan de marktplaats.</p>
 
         <form id="sellForm">
             <label for="productName">Titel van de samenvatting</label>
@@ -387,19 +328,18 @@
             <label for="productPrice">Prijs in euro's (€0,50 – €100)</label>
             <input type="number" id="productPrice" name="productPrice" step="0.01" min="0.50" max="100" placeholder="3.50" required>
 
-            <label for="productFile">PDF-bestand (max. 10 MB)</label>
-            <input type="file" id="productFile" name="productFile" accept=".pdf,application/pdf" required>
+            <label for="productSeller">Jouw naam (verkoper)</label>
+            <input type="text" id="productSeller" name="productSeller" placeholder="Bijv. Emma">
 
-            <div class="ai-check-box" id="aiCheckStatus" style="display: none;" role="status" aria-live="polite"></div>
+            <label for="productFile">PDF-bestand (optioneel in demo)</label>
+            <input type="file" id="productFile" name="productFile" accept=".pdf,application/pdf">
 
-            <button type="submit" class="primary-btn submit-btn" id="sellSubmitBtn">Controleer &amp; plaats samenvatting →</button>
+            <button type="submit" class="primary-btn submit-btn" id="sellSubmitBtn">Samenvatting plaatsen →</button>
         </form>
     </div>
 </div>
 
-<!-- =====================================
-     PRODUCT DETAIL, KOPEN & REVIEWS MODAL (#productModal)
-===================================== -->
+<!-- PRODUCT DETAIL & REVIEWS MODAL -->
 <div class="modal" id="productModal" role="dialog" aria-modal="true" aria-labelledby="detailTitle">
     <div class="modal-content modal-large">
         <button class="close" onclick="closeProductModal()" type="button" aria-label="Productvenster sluiten">✕</button>
@@ -408,39 +348,36 @@
         <p id="detailMeta" style="font-weight: 600; color: var(--purple-dark); margin-bottom: 10px;">Niveau · Verkoper</p>
 
         <div class="quality-badge modal-quality-badge" id="detailQualityBadge">
-            🛡️ AI-gecontroleerd &amp; Studenten-rated ⭐⭐⭐⭐⭐
+            🛡️ Gecontroleerd &amp; Studenten-rated ⭐⭐⭐⭐⭐
         </div>
 
         <p id="detailDescription" style="margin-bottom: 18px;">Beschrijving van de samenvatting.</p>
 
         <div class="product-detail-box">
             <div>
-                <small style="color: var(--muted); display: block;">Totaalprijs (incl. directe PDF-download)</small>
+                <small style="color: var(--muted); display: block;">Totaalprijs (incl. directe download)</small>
                 <strong id="detailPrice" style="font-size: 24px; color: var(--purple-dark);">€ 0,00</strong>
             </div>
             <button type="button" class="primary-btn" id="confirmBuyBtn">Nu kopen &amp; downloaden →</button>
         </div>
 
-        <!-- REVIEWS PER SAMENVATTING -->
         <div class="reviews-section" id="reviewsSection">
             <div class="reviews-header">
                 <h3>Beoordelingen van studenten</h3>
                 <span class="reviews-summary" id="detailRatingSummary">⭐ 5,0 (0 reviews)</span>
             </div>
 
-            <div class="reviews-list" id="reviewsList">
-                <!-- Gevuld door app.js -->
-            </div>
+            <div class="reviews-list" id="reviewsList"></div>
 
             <form class="review-form" id="reviewForm">
                 <h4>Schrijf zelf een beoordeling</h4>
 
                 <div class="star-picker" id="starPicker" role="group" aria-label="Kies aantal sterren">
-                    <button type="button" class="star-btn active" data-value="1" aria-label="1 ster">⭐</button>
-                    <button type="button" class="star-btn active" data-value="2" aria-label="2 sterren">⭐</button>
-                    <button type="button" class="star-btn active" data-value="3" aria-label="3 sterren">⭐</button>
-                    <button type="button" class="star-btn active" data-value="4" aria-label="4 sterren">⭐</button>
-                    <button type="button" class="star-btn active" data-value="5" aria-label="5 sterren">⭐</button>
+                    <button type="button" class="star-btn active" data-value="1">⭐</button>
+                    <button type="button" class="star-btn active" data-value="2">⭐</button>
+                    <button type="button" class="star-btn active" data-value="3">⭐</button>
+                    <button type="button" class="star-btn active" data-value="4">⭐</button>
+                    <button type="button" class="star-btn active" data-value="5">⭐</button>
                     <span class="star-label" id="starRatingText">5 van 5 sterren</span>
                 </div>
                 <input type="hidden" id="reviewRatingInput" value="5">
@@ -457,12 +394,31 @@
     </div>
 </div>
 
-<!-- =====================================
-     LOGIN MODAL (#loginModal)
-===================================== -->
+<!-- LOGIN MODAL -->
 <div class="modal" id="loginModal" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
     <div class="modal-content">
         <button class="close" onclick="closeLogin()" type="button" aria-label="Inlogvenster sluiten">✕</button>
         <span class="tag" id="loginTag">WELKOM TERUG 💜</span>
-        <h2 id="loginTitle">Leuk dat je er weer bent!</h2>
-        <p id="loginSubtitle">Log in op je StudySwap-account om samenvattingen te
+        <h2 id="loginTitle">Inloggen op StudySwap</h2>
+        <p id="loginSubtitle">Log in om makkelijker samenvattingen te kopen en te verkopen.</p>
+
+        <form id="loginForm">
+            <label for="loginName">Jouw naam</label>
+            <input type="text" id="loginName" placeholder="Bijv. Sam" required>
+
+            <label for="loginEmail">E-mailadres</label>
+            <input type="email" id="loginEmail" placeholder="sam@school.nl" required>
+
+            <label for="loginPassword">Wachtwoord</label>
+            <input type="password" id="loginPassword" placeholder="••••••••" required>
+
+            <button type="submit" class="primary-btn submit-btn" id="loginSubmitBtn">Inloggen →</button>
+        </form>
+
+        <p class="login-register" id="loginStatusText">Nog geen account? Vul je gegevens in om direct te starten.</p>
+    </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
